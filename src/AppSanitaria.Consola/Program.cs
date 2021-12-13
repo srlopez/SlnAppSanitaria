@@ -5,32 +5,6 @@ using Sanitaria.UI.Consola;
 
 using System.Collections.Generic;
 Console.WriteLine("= Servicio de Urgencias =");
-List<string>[,] datos = {
-    {
-        new List<string>{"1","2"},
-        new List<string>{"1","2"},
-        new List<string>{"1","2"}
-    },
-    {
-        new List<string>{"1","2"},
-        new List<string>{"1","2"},
-        new List<string>{"1","2"}
-    }
-    };
-
-var v = new Vista();
-v.MostrarParrilla("hola", datos);
-try
-{
-    Console.WriteLine(v.TryObtenerSiNo("Si o NO"));
-    Console.WriteLine(v.TryObtenerArrayInt("5 enteros", 5));
-    Console.WriteLine(v.TryObtenerFecha("Fecha"));
-}
-catch
-{
-    Console.WriteLine("capturado");
-}
-
 
 // Caso De uso 1
 // Registro de paciente que entra en el servicio de urgencias
