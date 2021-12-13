@@ -1,9 +1,7 @@
 using System;
 using Sanitaria;
 using Sanitaria.Modelos;
-using Sanitaria.UI.Consola;
 
-using System.Collections.Generic;
 Console.WriteLine("= Servicio de Urgencias =");
 
 // Caso De uso 1
