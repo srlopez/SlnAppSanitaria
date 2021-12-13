@@ -22,9 +22,9 @@ namespace Sanitaria
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
-            var resultado = urgencias.PautaCompletaDeVacunación(p1);
+            var resultado = urgencias.VacunacionDelPaciente(p1);
             // Then
-            Assert.Equal(false, resultado);
+            Assert.Equal(PautaVacunacion.NoVacunado, resultado);
         }
         [Fact]
         public void PautaCompletaDeVacunación_True_Test()
@@ -38,9 +38,9 @@ namespace Sanitaria
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
-            var resultado = urgencias.PautaCompletaDeVacunación(p1);
+            var resultado = urgencias.VacunacionDelPaciente(p1);
             // Then
-            Assert.Equal(true, resultado);
+            Assert.Equal(PautaVacunacion.Completa, resultado);
         }
 
         [Theory]

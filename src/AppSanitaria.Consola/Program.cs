@@ -15,7 +15,6 @@ InfoVacPaciente luis = new InfoVacPaciente
     DosisRecibidas = 1,
     FechaUltimaDosis = new DateTime(2021, 5, 1)
 };
-Console.WriteLine($"Estado de vacunación de {luis.PacienteID}: {luis.EstadoDeVacunacion}");
 
 
 // Caso de uso 2
@@ -26,4 +25,7 @@ var inmunodepresion = false;
 // Proceso de verificación de la prueba PCR
 var gu = new GestorDeUrgencias();
 var pcr = gu.RealizacionDePCR(sintomas, inmunodepresion, luis);
+
+Console.WriteLine($"Estado de vacunación de {luis.PacienteID}: {gu.VacunacionDelPaciente(luis)}");
+
 Console.WriteLine($"¿{luis.PacienteID} debe realizar prueba PCR? {pcr}");

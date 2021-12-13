@@ -13,7 +13,7 @@ namespace Sanitaria
             return RealizacionDePCR( 
                     sintomas, 
                     inmunodepresion, 
-                    PautaCompletaDeVacunación(paciente));
+                    VacunacionDelPaciente(paciente)==PautaVacunacion.Completa);
         }
         public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, bool pautaCompleta)
         {
@@ -23,8 +23,16 @@ namespace Sanitaria
             return false;
         }
 
-        public bool PautaCompletaDeVacunación(InfoVacPaciente paciente)=>
-            paciente.EstadoDeVacunacion == PautaVacunacion.Completa;
+        public PautaVacunacion VacunacionDelPaciente(InfoVacPaciente paciente){
+               if (paciente.DosisRecibidas == 0) return PautaVacunacion.NoVacunado;
+                if (paciente.TipoVacunacion == 0) return PautaVacunacion.NoVacunado;
+                // Sin las dosis necesarias
+                if (Covid19.nDosisMinimas[(int)paciente.TipoVacunacion] > paciente.DosisRecibidas) return PautaVacunacion.Incompleta;
+                // Dias de efectividad de dosis cumplida
+                if (paciente.FechaUltimaDosis.Value.AddDays(Covid19.DiasEfectivos) > DateTime.Now) return PautaVacunacion.Incompleta;
+
+                return PautaVacunacion.Completa;
+        }
 
     }
 }

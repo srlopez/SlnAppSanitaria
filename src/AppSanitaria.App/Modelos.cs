@@ -31,20 +31,5 @@ namespace Sanitaria.Modelos
         public TipoVacuna TipoVacunacion = TipoVacuna.Ninguna;
         public DateTime? FechaUltimaDosis = null;
 
-        public PautaVacunacion EstadoDeVacunacion
-        {
-            get
-            {
-                // No vacunado
-                if (DosisRecibidas == 0) return PautaVacunacion.NoVacunado;
-                if (TipoVacunacion == 0) return PautaVacunacion.NoVacunado;
-                // Sin las dosis necesarias
-                if (Covid19.nDosisMinimas[(int)TipoVacunacion] > DosisRecibidas) return PautaVacunacion.Incompleta;
-                // Dias de efectividad de dosis cumplida
-                if (FechaUltimaDosis.Value.AddDays(Covid19.DiasEfectivos) > DateTime.Now) return PautaVacunacion.Incompleta;
-
-                return PautaVacunacion.Completa;
-            }
-        }
     }
 }
