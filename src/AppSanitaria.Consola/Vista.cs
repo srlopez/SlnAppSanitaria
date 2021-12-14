@@ -12,6 +12,7 @@ namespace Sanitaria.UI.Consola
         const string CANCELINPUT = "fin";
         // Helpers
         public List<T> EnumToList<T>() => new List<T>(Enum.GetValues(typeof(T)).Cast<T>());
+        
         // Métodos de presentación
         public void LimpiarPantalla() => Clear();
         public void MostrarYReturn(Object obj)
