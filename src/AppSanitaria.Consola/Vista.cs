@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using static System.Console;
 
@@ -9,6 +10,8 @@ namespace Sanitaria.UI.Consola
     {
         // String de cancelación de la entrada de datos.
         const string CANCELINPUT = "fin";
+        // Helpers
+        public List<T> EnumToList<T>() => new List<T>(Enum.GetValues(typeof(T)).Cast<T>());
         // Métodos de presentación
         public void LimpiarPantalla() => Clear();
         public void MostrarYReturn(Object obj)
@@ -22,7 +25,7 @@ namespace Sanitaria.UI.Consola
             WriteLine(obj.ToString());
             ForegroundColor = ConsoleColor.White;
         }
-        public void MostrarListaEnumerada<T>(string titulo, List<T> datos)
+        private void MostrarListaEnumerada<T>(string titulo, List<T> datos)
         {
             Mostrar(titulo, ConsoleColor.Yellow);
             WriteLine();

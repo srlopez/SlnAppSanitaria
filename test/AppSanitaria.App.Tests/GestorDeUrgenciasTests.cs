@@ -11,7 +11,7 @@ namespace Sanitaria
     {
 
         [Fact]
-        public void PautaCompletaDeVacunación_False_Test()
+        public void VacunacionDelPaciente_NoVacunado_Test()
         {
             // Given
             InfoVacPaciente p1 = new InfoVacPaciente
@@ -27,14 +27,14 @@ namespace Sanitaria
             Assert.Equal(PautaVacunacion.NoVacunado, resultado);
         }
         [Fact]
-        public void PautaCompletaDeVacunación_True_Test()
+        public void VacunacionDelPaciente_Completa_Test()
         {
             // Given
             InfoVacPaciente p1 = new InfoVacPaciente
             {
                 TipoVacunacion = TipoVacuna.JandJ,
                 DosisRecibidas = 1,
-                FechaUltimaDosis =  DateTime.Now.AddDays(-15)
+                FechaUltimaDosis = DateTime.Now.AddDays(-15)
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
@@ -42,19 +42,36 @@ namespace Sanitaria
             // Then
             Assert.Equal(PautaVacunacion.Completa, resultado);
         }
+        [Fact]
+        public void VacunacionDelPaciente_Incompleta_Test()
+        {
+            // Given
+            InfoVacPaciente p1 = new InfoVacPaciente
+            {
+                TipoVacunacion = TipoVacuna.JandJ,
+                DosisRecibidas = 1,
+                FechaUltimaDosis = DateTime.Now.AddDays(-10)
+            };
+            GestorDeUrgencias urgencias = new GestorDeUrgencias();
+            // When
+            var resultado = urgencias.VacunacionDelPaciente(p1);
+            // Then
+            Assert.Equal(PautaVacunacion.Incompleta, resultado);
+        }
 
         [Theory]
         [InlineData(true, true, true, true)]
         [InlineData(false, true, true, true)]
         [InlineData(false, false, true, false)]
         [InlineData(false, false, false, true)]
-        public void RealizacionDePCRTest(bool sintomas, bool inmunodepresion, bool pautaCompleta, bool pcrEsperado){
-          //
-          var urgencias = new GestorDeUrgencias();
-          //
-          var resultado = urgencias.RealizacionDePCR(sintomas, inmunodepresion, pautaCompleta);
-          //
-          Assert.Equal(pcrEsperado, resultado);
+        public void RealizacionDePCR_Test(bool sintomas, bool inmunodepresion, bool pautaCompleta, bool pcrEsperado)
+        {
+            //
+            var urgencias = new GestorDeUrgencias();
+            //
+            var resultado = urgencias.RealizacionDePCR(sintomas, inmunodepresion, pautaCompleta);
+            //
+            Assert.Equal(pcrEsperado, resultado);
         }
     }
 }

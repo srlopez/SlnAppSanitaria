@@ -1,6 +1,11 @@
 using System;
 using Sanitaria;
 using Sanitaria.Modelos;
+using Sanitaria.UI.Consola;
+
+using System.Collections.Generic;
+using System.Linq;
+
 
 Console.WriteLine("= Servicio de Urgencias =");
 
@@ -13,7 +18,6 @@ InfoVacPaciente luis = new InfoVacPaciente
     DosisRecibidas = 1,
     FechaUltimaDosis = new DateTime(2021, 5, 1)
 };
-
 
 // Caso de uso 2
 // Verificación de Sintomas Covid
