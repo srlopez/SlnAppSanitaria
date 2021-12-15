@@ -27,7 +27,7 @@ namespace Sanitaria
         {
             // Datos de inicializacion
             if (paciente.DosisRecibidas == 0) return PautaVacunacion.NoVacunado;
-            if (paciente.TipoVacunacion == 0) return PautaVacunacion.NoVacunado;
+            if (paciente.TipoVacunacion == TipoVacuna.Ninguna) return PautaVacunacion.NoVacunado;
             if (paciente.FechaUltimaDosis is null) return PautaVacunacion.NoVacunado;
             // Sin las dosis necesarias
             if (paciente.DosisRecibidas < Covid19.nDosisMinimas[(int)paciente.TipoVacunacion] ) return PautaVacunacion.Incompleta;

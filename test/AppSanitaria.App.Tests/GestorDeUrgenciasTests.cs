@@ -20,11 +20,19 @@ namespace Sanitaria
                 DosisRecibidas = 1,
                 FechaUltimaDosis = new DateTime(2021, 5, 1)
             };
+                        InfoVacPaciente p2 = new InfoVacPaciente
+            {
+                TipoVacunacion = TipoVacuna.Astra,
+                DosisRecibidas = 0,
+                FechaUltimaDosis = new DateTime(2021, 5, 1)
+            };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
-            var resultado = urgencias.VacunacionDelPaciente(p1);
+            var resultado1 = urgencias.VacunacionDelPaciente(p1);
+            var resultado2 = urgencias.VacunacionDelPaciente(p2);
             // Then
-            Assert.Equal(PautaVacunacion.NoVacunado, resultado);
+            Assert.Equal(PautaVacunacion.NoVacunado, resultado1);
+            Assert.Equal(PautaVacunacion.NoVacunado, resultado2);
         }
         [Fact]
         public void VacunacionDelPaciente_Completa_Test()
@@ -52,11 +60,19 @@ namespace Sanitaria
                 DosisRecibidas = 1,
                 FechaUltimaDosis = DateTime.Now.AddDays(-10)
             };
+            InfoVacPaciente p2 = new InfoVacPaciente
+            {
+                TipoVacunacion = TipoVacuna.Astra,
+                DosisRecibidas = 1,
+                FechaUltimaDosis = DateTime.Now.AddDays(-16)
+            };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
-            var resultado = urgencias.VacunacionDelPaciente(p1);
+            var resultado1 = urgencias.VacunacionDelPaciente(p1);
+            var resultado2 = urgencias.VacunacionDelPaciente(p2);
             // Then
-            Assert.Equal(PautaVacunacion.Incompleta, resultado);
+            Assert.Equal(PautaVacunacion.Incompleta, resultado1);
+            Assert.Equal(PautaVacunacion.Incompleta, resultado2);
         }
 
         [Theory]
