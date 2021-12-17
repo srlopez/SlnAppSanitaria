@@ -7,27 +7,68 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-Console.WriteLine("= Servicio de Urgencias =");
+// Ejercicio de refactorización
+var view = new Vista();
+view.Mostrar("= Servicio de Urgencias =");
 
 // Caso De uso 1
 // Registro de paciente que entra en el servicio de urgencias
-InfoVacPaciente luis = new InfoVacPaciente
+
+var id = view.TryObtenerDatoDeTipo<string>("Paciente ID");
+var tv = view.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", view.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
+var nd = view.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
+var fu = view.TryObtenerFecha("Fecha de la última dosis");
+
+InfoVacPaciente pac1 = new InfoVacPaciente
 {
-    PacienteID = "Luis",
-    TipoVacunacion = TipoVacuna.Moderna,
-    DosisRecibidas = 1,
-    FechaUltimaDosis = new DateTime(2021, 5, 1)
+    PacienteID = id,
+    TipoVacunacion = tv,
+    DosisRecibidas = nd,
+    FechaUltimaDosis = fu
 };
 
 // Caso de uso 2
 // Verificación de Sintomas Covid
-var sintomas = true;
+var sintomas = 'S' == view.TryObtenerSiNo("Sintomatología Covid-19");
 // Verificación de sintomaas inmunodepresivos
-var inmunodepresion = false;
+var inmunodepresion = 'S' == view.TryObtenerSiNo("Paciente con inmunodepresión");
 // Proceso de verificación de la prueba PCR
-var gu = new GestorDeUrgencias();
-var pcr = gu.RealizacionDePCR(sintomas, inmunodepresion, luis);
+var sistema = new GestorDeUrgencias();
+var pcr = sistema.RealizacionDePCR(sintomas, inmunodepresion, pac1);
 
-Console.WriteLine($"Estado de vacunación de {luis.PacienteID}: {gu.VacunacionDelPaciente(luis)}");
+Console.WriteLine($"Estado de vacunación de {pac1.PacienteID}: {sistema.VacunacionDelPaciente(pac1)}");
+Console.WriteLine($"Sintomatología Covid-19: {sintomas}");
+Console.WriteLine($"Paciente con inmunodepresión: {inmunodepresion}");
+Console.WriteLine($"¿{pac1.PacienteID} debe realizar prueba PCR?: {pcr}");
 
-Console.WriteLine($"¿{luis.PacienteID} debe realizar prueba PCR? {pcr}");
+/*
+var casosDeUso = new Dictionary<string, Action>(){
+                { "Registrar ingreso de paciente", Registrar },
+                { "Comprobación de PCR", ComprobarPCR }
+            };
+
+void Registrar() { }
+void ComprobarPCR() { }
+
+void Run()
+{
+    view.LimpiarPantalla();
+    // Acceso a las Claves del diccionario
+    var menu = casosDeUso.Keys.ToList<String>();
+    while (true)
+        try
+        {
+            // Menu
+            var key = view.TryObtenerElementoDeLista("Menu de Usuario", menu, "Seleciona una opción");
+            // Ejecución de la opción escogida
+            view.LimpiarPantalla();
+            view.Mostrar(key);
+            casosDeUso[key].Invoke();
+
+            view.MostrarYReturn("Pulsa <Return> para continuar");
+            view.LimpiarPantalla();
+        }
+        catch { return; }
+}
+
+*/

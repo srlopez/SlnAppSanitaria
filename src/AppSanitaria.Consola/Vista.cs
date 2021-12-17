@@ -177,10 +177,10 @@ namespace Sanitaria.UI.Consola
         }
         public DateTime TryObtenerFecha(string prompt)
         {
-            var msg = prompt.Trim() + "(d/m/a): ";
+            var promptF = prompt.Trim() + " (d/m/a4): ";
             while (true)
             {
-                var input = TryObtenerArrayInt(prompt, 3, '/');
+                var input = TryObtenerArrayInt(promptF, 3, '/');
                 try
                 {
                     return new DateTime(input[2], input[1], input[0], 0, 0, 0);
@@ -191,9 +191,9 @@ namespace Sanitaria.UI.Consola
                 }
             }
         }
-        public char TryObtenerSiNo(string prompt, char @default = 'S')
+        
+        public char TryObtenerCharFromString(string prompt, string opciones, char @default = 'S')
         {
-            var opciones = "SN";
             var msg = prompt.Trim() + " (" + @default + "): ";
             while (true)
             {
@@ -211,9 +211,11 @@ namespace Sanitaria.UI.Consola
                 }
                 catch (Exception)
                 {
-                    Mostrar($"Error: '{input}' no reconocido como valor permitido", ConsoleColor.DarkRed);
+                    Mostrar($"Error: '{input}' no reconocido como valor permitido en {opciones}", ConsoleColor.DarkRed);
                 }
             }
         }
+        public char TryObtenerSiNo(string prompt) => TryObtenerCharFromString(prompt, "SN", 'S');
+        
     }
 }

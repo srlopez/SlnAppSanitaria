@@ -6,7 +6,7 @@ using Sanitaria.Modelos;
 
 namespace Sanitaria
 {
-
+    
     public class GestorDeUrgenciasTests
     {
 
