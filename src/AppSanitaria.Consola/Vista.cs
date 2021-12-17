@@ -29,7 +29,7 @@ namespace Sanitaria.UI.Consola
         private void MostrarListaEnumerada<T>(string titulo, List<T> datos)
         {
             Mostrar(titulo, ConsoleColor.Yellow);
-            WriteLine();
+            //WriteLine();
             for (int i = 0; i < datos.Count; i++)
             {
                 WriteLine($"  {i + 1:##}.- {datos[i].ToString()}");

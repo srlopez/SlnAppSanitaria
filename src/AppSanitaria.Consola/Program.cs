@@ -12,6 +12,7 @@ view.Mostrar("= Servicio de Urgencias =");
 
 // Caso De uso 1
 // Registro de paciente que entra en el servicio de urgencias
+view.Mostrar("\nProceso de Registro");
 
 var id = view.TryObtenerDatoDeTipo<string>("Paciente ID");
 var tv = view.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", view.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
@@ -27,10 +28,15 @@ InfoVacPaciente pac1 = new InfoVacPaciente
 };
 
 // Caso de uso 2
+view.Mostrar("\nProceso sanitario");
+
 // Verificación de Sintomas Covid
 var sintomas = 'S' == view.TryObtenerSiNo("Sintomatología Covid-19");
 // Verificación de sintomaas inmunodepresivos
 var inmunodepresion = 'S' == view.TryObtenerSiNo("Paciente con inmunodepresión");
+
+view.Mostrar("\nInforme de Resumen");
+
 // Proceso de verificación de la prueba PCR
 var sistema = new GestorDeUrgencias();
 var pcr = sistema.RealizacionDePCR(sintomas, inmunodepresion, pac1);
