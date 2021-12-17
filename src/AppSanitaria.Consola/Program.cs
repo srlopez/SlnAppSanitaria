@@ -6,8 +6,7 @@ using Sanitaria.UI.Consola;
 using System.Collections.Generic;
 using System.Linq;
 
-
-// Ejercicio de refactorización
+// Ejercicio de Refactorización
 var view = new Vista();
 view.Mostrar("= Servicio de Urgencias =");
 
