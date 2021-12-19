@@ -31,9 +31,9 @@ InfoVacPaciente pac1 = new InfoVacPaciente
 view.Mostrar("\nProceso sanitario");
 
 // Verificación de Sintomas Covid
-var sintomas = 'S' == view.TryObtenerSiNo("Sintomatología Covid-19");
+var sintomas = 'S' == view.TryObtenerCaracterDeString("Sintomatología Covid-19","SN",'S');
 // Verificación de sintomaas inmunodepresivos
-var inmunodepresion = 'S' == view.TryObtenerSiNo("Paciente con inmunodepresión");
+var inmunodepresion = 'S' == view.TryObtenerCaracterDeString("Paciente con inmunodepresión","SN",'S');
 
 view.Mostrar("\nInforme de Resumen");
 

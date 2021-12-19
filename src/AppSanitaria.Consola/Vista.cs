@@ -192,7 +192,7 @@ namespace Sanitaria.UI.Consola
             }
         }
         
-        public char TryObtenerCharFromString(string prompt, string opciones, char @default = 'S')
+        public char TryObtenerCaracterDeString(string prompt, string opciones, char @default = 'S')
         {
             var msg = prompt.Trim() + " (" + @default + "): ";
             while (true)
@@ -215,7 +215,7 @@ namespace Sanitaria.UI.Consola
                 }
             }
         }
-        public char TryObtenerSiNo(string prompt) => TryObtenerCharFromString(prompt, "SN", 'S');
+        //public char TryObtenerSiNo(string prompt) => TryObtenerCharFromString(prompt, "SN", 'S');
         
     }
 }
