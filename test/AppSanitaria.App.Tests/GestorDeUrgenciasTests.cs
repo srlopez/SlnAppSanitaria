@@ -6,10 +6,36 @@ using Sanitaria.Modelos;
 
 namespace Sanitaria
 {
-    
+
     public class GestorDeUrgenciasTests
     {
 
+        [Fact]
+        public void Registro_Y_Alta_Test()
+        {
+            // Realmente de debe probar cada función por separado
+            // Given
+            InfoVacPaciente p1 = new InfoVacPaciente
+            {
+                TipoVacunacion = TipoVacuna.Ninguna,
+                DosisRecibidas = 1,
+                FechaUltimaDosis = new DateTime(2021, 5, 1),
+                Edad = 28,
+                Sexo = 'H'
+            };
+            var sistema = new GestorDeUrgencias();
+            var cuenta = sistema.Ingresados.Count;
+            // When
+            sistema.RealizarIngreso(p1);
+            var cuentaMas1 = sistema.Ingresados.Count;
+            // Then
+            Assert.Equal(cuenta + 1, cuentaMas1);
+            // When
+            sistema.DarDeAlta(p1);
+            var cuentaMenos1 = sistema.Ingresados.Count;
+            // Then
+            Assert.Equal(cuenta, cuentaMenos1);
+        }
         [Fact]
         public void VacunacionDelPaciente_NoVacunado_Test()
         {
@@ -18,13 +44,17 @@ namespace Sanitaria
             {
                 TipoVacunacion = TipoVacuna.Ninguna,
                 DosisRecibidas = 1,
-                FechaUltimaDosis = new DateTime(2021, 5, 1)
+                FechaUltimaDosis = new DateTime(2021, 5, 1),
+                Edad = 28,
+                Sexo = 'H'
             };
-                        InfoVacPaciente p2 = new InfoVacPaciente
+            InfoVacPaciente p2 = new InfoVacPaciente
             {
                 TipoVacunacion = TipoVacuna.Astra,
                 DosisRecibidas = 0,
-                FechaUltimaDosis = new DateTime(2021, 5, 1)
+                FechaUltimaDosis = new DateTime(2021, 5, 1),
+                Edad = 28,
+                Sexo = 'H'
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
@@ -42,7 +72,9 @@ namespace Sanitaria
             {
                 TipoVacunacion = TipoVacuna.JandJ,
                 DosisRecibidas = 1,
-                FechaUltimaDosis = DateTime.Now.AddDays(-15)
+                FechaUltimaDosis = DateTime.Now.AddDays(-15),
+                Edad = 28,
+                Sexo = 'H'
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
@@ -58,13 +90,17 @@ namespace Sanitaria
             {
                 TipoVacunacion = TipoVacuna.JandJ,
                 DosisRecibidas = 1,
-                FechaUltimaDosis = DateTime.Now.AddDays(-10)
+                FechaUltimaDosis = DateTime.Now.AddDays(-10),
+                Edad = 28,
+                Sexo = 'H'
             };
             InfoVacPaciente p2 = new InfoVacPaciente
             {
                 TipoVacunacion = TipoVacuna.Astra,
                 DosisRecibidas = 1,
-                FechaUltimaDosis = DateTime.Now.AddDays(-16)
+                FechaUltimaDosis = DateTime.Now.AddDays(-16),
+                Edad = 28,
+                Sexo = 'H'
             };
             GestorDeUrgencias urgencias = new GestorDeUrgencias();
             // When
