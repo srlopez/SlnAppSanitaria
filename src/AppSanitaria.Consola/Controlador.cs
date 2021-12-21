@@ -8,15 +8,14 @@ namespace Sanitaria.UI.Consola
 {
     class Controlador
     {
-
         private Vista _vista;
         private GestorDeUrgencias _sistema;
-
-        private List<String> menu = new()
+        private List<String> _casosDeUso = new()
         {
             "Realizar Ingreso",
             "Dar Alta a paciente",
-            "Realizar Prueba PCR"
+            "Realizar Prueba PCR",
+            "Mostar Ingresados"
         };
 
         public Controlador(Vista vista, GestorDeUrgencias businessLogic)
@@ -26,14 +25,15 @@ namespace Sanitaria.UI.Consola
 
         }
 
+        // === Ciclo de la Aplicacin ===
         public void Run()
         {
             while (true)
             {
                 _vista.LimpiarPantalla();
-                _vista.MostrarListaEnumerada<string>("Menu De Urgencias", menu);
+                _vista.MostrarListaEnumerada<string>("Menu De Urgencias", _casosDeUso);
                 var opcion = _vista.TryObtenerValorEnRangoInt(
-                    1, menu.Count, "Indica una opción");
+                    1, _casosDeUso.Count, "Indica una opción");
                 switch (opcion)
                 {
                     case 1:
@@ -43,16 +43,22 @@ namespace Sanitaria.UI.Consola
                         DarDeAlta();
                         break;
                     case 3:
-                        VerificarPCR();
+                        VerificarPruebaPCR();
+                        break;
+                    case 4:
+                        MostarIngresados();
                         break;
                 }
                 _vista.MostrarYReturn("Pulse <Return> para continuar");
             }
         }
 
+        // === Casos De Uso ===
         private void RealizarIngreso()
         {
             var id = _vista.TryObtenerDatoDeTipo<string>("Paciente ID");
+            var ed = _vista.TryObtenerDatoDeTipo<int>("Edad");
+            var sx = _vista.TryObtenerCaracterDeString("Sexo","HM",'H');
             var tv = _vista.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", _vista.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
             var nd = _vista.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
             var fu = _vista.TryObtenerFecha("Fecha de la última dosis");
@@ -62,12 +68,13 @@ namespace Sanitaria.UI.Consola
                 PacienteID = id,
                 TipoVacunacion = tv,
                 DosisRecibidas = nd,
-                FechaUltimaDosis = fu
+                FechaUltimaDosis = fu,
+                Edad = ed,
+                Sexo = sx
             };
 
             _sistema.RealizarIngreso(paciente);
         }
-
         private void DarDeAlta()
         {
             // Seleccionar paciente
@@ -75,10 +82,10 @@ namespace Sanitaria.UI.Consola
             // 
             _sistema.DarDeAlta(pac);
         }
-        private void VerificarPCR()
+        private void VerificarPruebaPCR()
         {
             // Seleccionar paciente
-            var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Ingresados", _sistema.Ingresados, "dime a quien probamos");
+            var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Ingresados", _sistema.Ingresados, "Indica el paciente en prueba");
             // Verificación de Sintomas Covid
             var sintomas = 'S' == _vista.TryObtenerCaracterDeString("Sintomatología Covid-19", "SN", 'S');
             // Verificación de sintomaas inmunodepresivos
@@ -92,5 +99,41 @@ namespace Sanitaria.UI.Consola
             _vista.Mostrar("");
             _vista.Mostrar($"¿{pac.PacienteID} debe realizar prueba PCR?: {pcr}");
         }
+        public void MostarIngresados()
+        {
+            // Listar paciente
+            _vista.MostrarListaEnumerada<InfoVacPaciente>("Ingresados", _sistema.Ingresados);
+        }
     }
 }
+
+/*
+var _casosDeUso = new Dictionary<string, Action>(){
+                { "Registrar ingreso de paciente", RealizarIngreso },
+                { "Alta de paciente", DarDeAlta },
+                { "Comprobación de PCR", VerificarPruebaPCR }
+            };
+
+
+void Run()
+{
+    view.LimpiarPantalla();
+    // Acceso a las Claves del diccionario
+    var menu = _casosDeUso.Keys.ToList<String>();
+    while (true)
+        try
+        {
+            //Limpiamos
+            view.LimpiarPantalla();
+            // Menu
+            var key = view.TryObtenerElementoDeLista("Menu de Usuario", menu, "Seleciona una opción");
+            view.Mostrar("");
+            // Ejecución de la opción escogida
+            _casosDeUso[key].Invoke();
+            // Fin
+            view.MostrarYReturn("Pulsa <Return> para continuar");
+        }
+        catch { return; }
+}
+
+*/

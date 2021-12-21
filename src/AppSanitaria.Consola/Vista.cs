@@ -228,7 +228,6 @@ namespace Sanitaria.UI.Consola
                 }
             }
         }
-        //public char TryObtenerSiNo(string prompt) => TryObtenerCharFromString(prompt, "SN", 'S');
-
+    
     }
 }

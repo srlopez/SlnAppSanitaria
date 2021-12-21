@@ -26,13 +26,17 @@ namespace Sanitaria.Modelos
 
     public class InfoVacPaciente
     {
-        public string PacienteID;
-        public int DosisRecibidas = 0;
-        public TipoVacuna TipoVacunacion = TipoVacuna.Ninguna;
-        public DateTime? FechaUltimaDosis = null;
+        public string PacienteID { get; set; }
+        public int DosisRecibidas { get; set; } = 0;
+        public TipoVacuna TipoVacunacion { get; set; } = TipoVacuna.Ninguna;
+        public DateTime? FechaUltimaDosis { get; set; } = null;
+        public int Edad { get; set; }
+        public char Sexo { get; set; }
 
-        public override string ToString() => $"{PacienteID} {TipoVacunacion}:{DosisRecibidas:#;;}";
-        
+        public override string ToString() =>
+        TipoVacunacion == TipoVacuna.Ninguna ?
+            $"{Sexo} {PacienteID,-8}({Edad}): {TipoVacunacion}" :
+            $"{Sexo} {PacienteID,-8}({Edad}): {TipoVacunacion}{DosisRecibidas:(#)} {FechaUltimaDosis:dd-MM-yy}";
 
     }
 }

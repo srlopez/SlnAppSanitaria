@@ -4,25 +4,27 @@ using System.Collections.Generic;
 
 namespace Sanitaria
 {
-
     public class GestorDeUrgencias
     {
         public List<InfoVacPaciente> Ingresados { get; } = new()
         {
-
             new InfoVacPaciente
             {
-                PacienteID = "luis",
+                PacienteID = "Luis",
                 TipoVacunacion = TipoVacuna.Ninguna,
                 DosisRecibidas = 0,
-                FechaUltimaDosis = new DateTime(2021, 12, 12)
+                FechaUltimaDosis = DateTime.Now,
+                Edad = 23,
+                Sexo = 'H'
             },
             new InfoVacPaciente
             {
-                PacienteID = "marta",
+                PacienteID = "Marta",
                 TipoVacunacion = TipoVacuna.Astra,
                 DosisRecibidas = 2,
-                FechaUltimaDosis = new DateTime(2021, 12, 12)
+                FechaUltimaDosis = DateTime.Now.AddDays(-10),
+                Edad = 45,
+                Sexo = 'M'
             },
 
         };
@@ -35,7 +37,6 @@ namespace Sanitaria
         {
             Ingresados.Remove(p);
         }
-
         // Ejemplo de sobrecarga de métodos
         public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, InfoVacPaciente paciente)
         {
