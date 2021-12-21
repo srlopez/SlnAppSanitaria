@@ -30,8 +30,8 @@ namespace Sanitaria.Modelos
         public int DosisRecibidas { get; set; } = 0;
         public TipoVacuna TipoVacunacion { get; set; } = TipoVacuna.Ninguna;
         public DateTime? FechaUltimaDosis { get; set; } = null;
-        public int Edad { get; set; }
-        public char Sexo { get; set; }
+        public int Edad { get; set; } = 0;
+        public char Sexo { get; set; } = 'H';
 
         public override string ToString() =>
         TipoVacunacion == TipoVacuna.Ninguna ?
