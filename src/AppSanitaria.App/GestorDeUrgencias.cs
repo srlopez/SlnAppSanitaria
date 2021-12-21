@@ -1,12 +1,19 @@
 using System;
 using Sanitaria.Modelos;
+using System.Collections.Generic;
 
 namespace Sanitaria
 {
 
     public class GestorDeUrgencias
     {
+        public List<InfoVacPaciente> Ingresados {get; }= new() { };
 
+public void RealizarIngreso(InfoVacPaciente p)
+{
+    Ingresados.Add(p);
+
+}
         // Ejemplo de sobrecarga de métodos
         public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, InfoVacPaciente paciente)
         {
