@@ -31,7 +31,7 @@ namespace Sanitaria.Modelos
         public TipoVacuna TipoVacunacion = TipoVacuna.Ninguna;
         public DateTime? FechaUltimaDosis = null;
 
-        public override string ToString() => $"{PacienteID} {DosisRecibidas}";
+        public override string ToString() => $"{PacienteID} {TipoVacunacion}:{DosisRecibidas:#;;}";
         
 
     }

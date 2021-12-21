@@ -12,12 +12,14 @@ namespace Sanitaria.UI.Consola
         const string CANCELINPUT = "fin";
         // Helpers
         public List<T> EnumToList<T>() => new List<T>(Enum.GetValues(typeof(T)).Cast<T>());
-        
-        // Métodos de presentación
+
+        // ===== METODOS DE PRESNTACION =====
         public void LimpiarPantalla() => Clear();
-        public void MostrarYReturn(Object obj)
+        public void MostrarYReturn(Object obj, ConsoleColor color = ConsoleColor.White)
         {
+            ForegroundColor = color;
             Write(obj.ToString() + " ");
+            ForegroundColor = ConsoleColor.White;
             ReadLine();
         }
         public void Mostrar(Object obj, ConsoleColor color = ConsoleColor.White)
@@ -26,10 +28,10 @@ namespace Sanitaria.UI.Consola
             WriteLine(obj.ToString());
             ForegroundColor = ConsoleColor.White;
         }
-        private void MostrarListaEnumerada<T>(string titulo, List<T> datos)
+        public void MostrarListaEnumerada<T>(string titulo, List<T> datos)
         {
             Mostrar(titulo, ConsoleColor.Yellow);
-            //WriteLine();
+            WriteLine();
             for (int i = 0; i < datos.Count; i++)
             {
                 WriteLine($"  {i + 1:##}.- {datos[i].ToString()}");
@@ -80,7 +82,7 @@ namespace Sanitaria.UI.Consola
 
         }
 
-        // Métodos de Obtener inputs 
+        // ===== METODOS DE CAPTURA DE INFORMACION =====
         // Refactoring C# Generics, Reflexion, PatternMaching, Tuples,
         public T TryObtenerDatoDeTipo<T>(string prompt, string @default = "")
         {
@@ -109,11 +111,10 @@ namespace Sanitaria.UI.Consola
                 }
             }
         }
-        public T TryObtenerElementoDeLista<T>(string titulo, List<T> datos, string prompt)
+        public int TryObtenerValorEnRangoInt(int min, int max, string prompt)
         {
-            MostrarListaEnumerada(titulo, datos);
             int input = int.MaxValue;
-            while (input < 1 || input > datos.Count)
+            while (input < min || input > max)
                 try
                 {
                     input = TryObtenerDatoDeTipo<int>(prompt);
@@ -122,9 +123,22 @@ namespace Sanitaria.UI.Consola
                 {
                     throw e;
                 };
-            return datos[input - 1];
+            return input;
         }
-        public (int x, int y) TryObtenerTupla(string prompt, (int xMax, int yMax) limites)
+        public T TryObtenerElementoDeLista<T>(string titulo, List<T> datos, string prompt)
+        {
+            MostrarListaEnumerada(titulo, datos);
+            try
+            {
+                var input = TryObtenerValorEnRangoInt(1, datos.Count, prompt);
+                return datos[input - 1];
+            }
+            catch (Exception e)
+            {
+                throw e;
+            };
+        }
+        public (int x, int y) TryObtenerTuplaInt(string prompt, (int xMax, int yMax) limites)
         {
             var msg = prompt.Trim() + ": ";
             while (true)
@@ -191,17 +205,16 @@ namespace Sanitaria.UI.Consola
                 }
             }
         }
-        
-        public char TryObtenerCaracterDeString(string prompt, string opciones, char @default = 'S')
+        public char TryObtenerCaracterDeString(string prompt, string opciones, char predeterminado = 'S')
         {
-            var msg = prompt.Trim() + " (" + @default + "): ";
+            var msg = prompt.Trim() + " (" + predeterminado + "): ";
             while (true)
             {
                 Write(msg);
                 var input = ReadLine();
                 // c# throw new Exception: Lanzamos una Excepción para indicar que el usuario ha cancelado la entrada
                 if (input.ToLower().Trim() == CANCELINPUT) throw new Exception("Entrada cancelada por el usuario");
-                if (input == "") input = @default.ToString();
+                if (input == "") input = predeterminado.ToString();
                 try
                 {
                     if (input.Length != 1) throw new Exception();
@@ -216,6 +229,6 @@ namespace Sanitaria.UI.Consola
             }
         }
         //public char TryObtenerSiNo(string prompt) => TryObtenerCharFromString(prompt, "SN", 'S');
-        
+
     }
 }
