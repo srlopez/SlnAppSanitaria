@@ -56,48 +56,69 @@ namespace Sanitaria.UI.Consola
         // === Casos De Uso ===
         private void RealizarIngreso()
         {
-            var id = _vista.TryObtenerDatoDeTipo<string>("Paciente ID");
-            var ed = _vista.TryObtenerDatoDeTipo<int>("Edad");
-            var sx = _vista.TryObtenerCaracterDeString("Sexo","HM",'H');
-            var tv = _vista.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", _vista.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
-            var nd = _vista.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
-            var fu = _vista.TryObtenerFecha("Fecha de la última dosis");
-
-            InfoVacPaciente paciente = new InfoVacPaciente
+            try
             {
-                PacienteID = id,
-                TipoVacunacion = tv,
-                DosisRecibidas = nd,
-                FechaUltimaDosis = fu,
-                Edad = ed,
-                Sexo = sx
-            };
+                var id = _vista.TryObtenerDatoDeTipo<string>("Paciente ID");
+                var ed = _vista.TryObtenerDatoDeTipo<int>("Edad");
+                var sx = _vista.TryObtenerCaracterDeString("Sexo", "HM", 'H');
+                var tv = _vista.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", _vista.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
+                var nd = _vista.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
+                var fu = _vista.TryObtenerFecha("Fecha de la última dosis");
 
-            _sistema.RealizarIngreso(paciente);
+                InfoVacPaciente paciente = new InfoVacPaciente
+                {
+                    PacienteID = id,
+                    TipoVacunacion = tv,
+                    DosisRecibidas = nd,
+                    FechaUltimaDosis = fu,
+                    Edad = ed,
+                    Sexo = sx
+                };
+
+                _sistema.RealizarIngreso(paciente);
+            }
+            catch (Exception e)
+            {
+                _vista.Mostrar($"UC: {e.Message}");
+            }
         }
         private void DarDeAlta()
         {
-            // Seleccionar paciente
-            var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Paciente a Dar de Alta", _sistema.Ingresados, "dime a quien probamos");
-            // 
-            _sistema.DarDeAlta(pac);
+            try
+            {
+                // Seleccionar paciente
+                var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Paciente a Dar de Alta", _sistema.Ingresados, "dime a quien probamos");
+                // 
+                _sistema.DarDeAlta(pac);
+            }
+            catch (Exception e)
+            {
+                _vista.Mostrar($"UC: {e.Message}");
+            }
         }
         private void VerificarPruebaPCR()
         {
-            // Seleccionar paciente
-            var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Ingresados", _sistema.Ingresados, "Indica el paciente en prueba");
-            // Verificación de Sintomas Covid
-            var sintomas = 'S' == _vista.TryObtenerCaracterDeString("Sintomatología Covid-19", "SN", 'S');
-            // Verificación de sintomaas inmunodepresivos
-            var inmunodepresion = 'S' == _vista.TryObtenerCaracterDeString("Paciente con inmunodepresión", "SN", 'S');
-            // Verificamos la prueba PCR
-            var pcr = _sistema.RealizacionDePCR(sintomas, inmunodepresion, pac);
-            // Informamos al sanitario
-            _vista.Mostrar($"Estado de vacunación de {pac.PacienteID}: {_sistema.VacunacionDelPaciente(pac)}");
-            _vista.Mostrar($"Sintomatología Covid-19: {sintomas}");
-            _vista.Mostrar($"Paciente con inmunodepresión: {inmunodepresion}");
-            _vista.Mostrar("");
-            _vista.Mostrar($"¿{pac.PacienteID} debe realizar prueba PCR?: {pcr}");
+            try
+            {
+                // Seleccionar paciente
+                var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Ingresados", _sistema.Ingresados, "Indica el paciente en prueba");
+                // Verificación de Sintomas Covid
+                var sintomas = 'S' == _vista.TryObtenerCaracterDeString("Sintomatología Covid-19", "SN", 'S');
+                // Verificación de sintomaas inmunodepresivos
+                var inmunodepresion = 'S' == _vista.TryObtenerCaracterDeString("Paciente con inmunodepresión", "SN", 'S');
+                // Verificamos la prueba PCR
+                var pcr = _sistema.RealizacionDePCR(sintomas, inmunodepresion, pac);
+                // Informamos al sanitario
+                _vista.Mostrar($"Estado de vacunación de {pac.PacienteID}: {_sistema.VacunacionDelPaciente(pac)}");
+                _vista.Mostrar($"Sintomatología Covid-19: {sintomas}");
+                _vista.Mostrar($"Paciente con inmunodepresión: {inmunodepresion}");
+                _vista.Mostrar("");
+                _vista.Mostrar($"¿{pac.PacienteID} debe realizar prueba PCR?: {pcr}");
+            }
+            catch (Exception e)
+            {
+                _vista.Mostrar($"UC: {e.Message}");
+            }
         }
         public void MostarIngresados()
         {
