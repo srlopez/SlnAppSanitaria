@@ -1,8 +1,8 @@
 using System;
-using Sanitaria;
 using Sanitaria.Modelos;
-using Sanitaria.UI.Consola;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Sanitaria.UI.Consola
 {
@@ -10,49 +10,41 @@ namespace Sanitaria.UI.Consola
     {
         private Vista _vista;
         private GestorDeUrgencias _sistema;
-        private List<String> _casosDeUso = new()
-        {
-            "Realizar Ingreso",
-            "Dar Alta a paciente",
-            "Realizar Prueba PCR",
-            "Mostar Ingresados"
-        };
-
+        private Dictionary<string, Action> _casosDeUso;
         public Controlador(Vista vista, GestorDeUrgencias businessLogic)
         {
             _vista = vista;
             _sistema = businessLogic;
-
+            _casosDeUso = new Dictionary<string, Action>(){
+                { "Registrar ingreso de paciente", RealizarIngreso },
+                { "Alta de paciente", DarDeAlta },
+                { "Comprobación de PCR", VerificarPruebaPCR },
+                { "Mostrar Ingresados", MostarIngresados}
+            };
         }
 
         // === Ciclo de la Aplicacin ===
         public void Run()
         {
-            while (true)
-            {
-                _vista.LimpiarPantalla();
-                _vista.MostrarListaEnumerada<string>("Menu De Urgencias", _casosDeUso);
-                var opcion = _vista.TryObtenerValorEnRangoInt(
-                    1, _casosDeUso.Count, "Indica una opción");
-                switch (opcion)
-                {
-                    case 1:
-                        RealizarIngreso();
-                        break;
-                    case 2:
-                        DarDeAlta();
-                        break;
-                    case 3:
-                        VerificarPruebaPCR();
-                        break;
-                    case 4:
-                        MostarIngresados();
-                        break;
-                }
-                _vista.MostrarYReturn("Pulse <Return> para continuar");
-            }
-        }
+            _vista.LimpiarPantalla();
+            // Acceso a las Claves del diccionario
+            var menu = _casosDeUso.Keys.ToList<String>();
 
+            while (true)
+                try
+                {
+                    //Limpiamos
+                    _vista.LimpiarPantalla();
+                    // Menu
+                    var key = _vista.TryObtenerElementoDeLista("Menu de Usuario", menu, "Seleciona una opción");
+                    _vista.Mostrar("");
+                    // Ejecución de la opción escogida
+                    _casosDeUso[key].Invoke();
+                    // Fin
+                    _vista.MostrarYReturn("Pulsa <Return> para continuar");
+                }
+                catch { return; }
+        }
         // === Casos De Uso ===
         private void RealizarIngreso()
         {
@@ -86,10 +78,15 @@ namespace Sanitaria.UI.Consola
         {
             try
             {
+                // Include caso de uso
+                MostarIngresados();
                 // Seleccionar paciente
-                var pac = _vista.TryObtenerElementoDeLista<InfoVacPaciente>("Paciente a Dar de Alta", _sistema.Ingresados, "dime a quien probamos");
-                // 
+                var idx = _vista.TryObtenerValorEnRangoInt(1, _sistema.Ingresados.Count, "Paciente a Dar de Alta");
+                var pac = _sistema.Ingresados[idx - 1];
+                // Ejecucion
                 _sistema.DarDeAlta(pac);
+                // Info
+                _vista.Mostrar($"Informe De Alta entregdo a {pac.PacienteID}");
             }
             catch (Exception e)
             {
@@ -127,34 +124,3 @@ namespace Sanitaria.UI.Consola
         }
     }
 }
-
-/*
-var _casosDeUso = new Dictionary<string, Action>(){
-                { "Registrar ingreso de paciente", RealizarIngreso },
-                { "Alta de paciente", DarDeAlta },
-                { "Comprobación de PCR", VerificarPruebaPCR }
-            };
-
-
-void Run()
-{
-    view.LimpiarPantalla();
-    // Acceso a las Claves del diccionario
-    var menu = _casosDeUso.Keys.ToList<String>();
-    while (true)
-        try
-        {
-            //Limpiamos
-            view.LimpiarPantalla();
-            // Menu
-            var key = view.TryObtenerElementoDeLista("Menu de Usuario", menu, "Seleciona una opción");
-            view.Mostrar("");
-            // Ejecución de la opción escogida
-            _casosDeUso[key].Invoke();
-            // Fin
-            view.MostrarYReturn("Pulsa <Return> para continuar");
-        }
-        catch { return; }
-}
-
-*/
