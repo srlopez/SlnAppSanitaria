@@ -34,7 +34,7 @@ namespace Sanitaria.UI.Consola
             WriteLine();
             for (int i = 0; i < datos.Count; i++)
             {
-                WriteLine($"  {i + 1:##}.- {datos[i].ToString()}");
+                WriteLine($"  {i + 1,3:###}.- {datos[i].ToString()}");
             }
             WriteLine();
         }
@@ -76,9 +76,9 @@ namespace Sanitaria.UI.Consola
                 {
                     input = TryObtenerDatoDeTipo<int>(prompt);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    throw; // e;
                 };
             return input;
         }
@@ -90,9 +90,9 @@ namespace Sanitaria.UI.Consola
                 var input = TryObtenerValorEnRangoInt(1, datos.Count, prompt);
                 return datos[input - 1];
             }
-            catch (Exception e)
+            catch (Exception)// e)
             {
-                throw e;
+                throw; // e;
             };
         }
         public (int x, int y) TryObtenerTuplaInt(string prompt, (int xMax, int yMax) limites)
