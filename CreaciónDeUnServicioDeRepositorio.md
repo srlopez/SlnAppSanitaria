@@ -5,11 +5,11 @@ En este caso lo que vamos a persitir en disco son nuestros ingresados y en forma
 
 # Paso 0.- Partiendo de una lista codificada
 
-Hemos partido de una lista de datos (Ingresados) que estaba codificada en el `Sistema` `GestorDeUrgencias`.
-- Es correcto que le `Sistema`sea quien sabe con qué datos trabajamos. 
-- Incicialmente los datos los hemos `codificado` ahí, pero eso no es lo normal, ya que las aplicaciones deben trabajar con datos `persistentes`.
+Hemos partido de una lista de datos (Ingresados) que estaba codificada en el sistema que hemos llamado `GestorDeUrgencias`.
+- **Es correcto** que el `Sistema` sea quien sabe con qué datos trabajamos. 
+- Incicialmente los datos los hemos `codificado` dentro de él, pero eso no es lo normal, ya que las aplicaciones deben trabajar con datos `persistentes`.
 
-Por lo tanto ahora vamos a dota a nuestro `Sistema` de persitencia de datos.
+Para solucionarlo vamos a dotar a nuestro `Sistema` de persitencia de datos.  
 Así es como estaba inicializada la lista de Ingresados en el `GestorDeUrgencias` 
 ```C#
 List<InfoVacPaciente> Ingresados { get; set; }= new()
@@ -34,9 +34,10 @@ List<InfoVacPaciente> Ingresados { get; set; }= new()
             },
         };
 ```
+Dotamos al sistema de un constructor desde el que inicializaremos nuestra lista.  
 
-# Paso 1.- Creamos un archivo co System.IO.File
-Este es un paso temporal. Al crear el constuctor, éste nos a invitado a que pasemos como parámetro la lista de ingresados. Y así lo hemo hecho.
+# Paso 1.- Creamos un archivo con System.IO.File
+Este es un paso temporal. Al crear el constuctor, éste nos a invitado a que pasemos como parámetro la lista de ingresados. Y así lo hemos hecho.
 
 Ya que el `Sistema` es el encargado de saber los datos, temporalmente, voy a escribir el código que salva/guarda la lista dentro del mismo `Sistema`. Se podría hacer en el `Program.cs`, pero al ser algo coyuntural que lo borraremos, lo puedo hacer donde quiera.
 
@@ -47,8 +48,9 @@ using System.Linq; //<- Para poder ToList()
 ```
 
 Hemos decidido, por ahora, guardar nuestros _ingresados_ en formato _CSV_ (comma separated value), un formato en el que cada línea de texto representará un ingresado, y cada campo separado por coma, será una de las propiedades del ingresado.
+Es un formato típico en el que `Excel` guarda y/o importa datos.    
 
-## ESCRITURA
+## ESCRITURA - File.WriteAllLines y conversión a string
 ```C#
 var _file = "../../data.csv";  //1
 List <string> data = new(){};  //2
@@ -70,7 +72,7 @@ Este es el resultado
 Luis,Ninguna,0,2/23/2022 11:03:03 AM,23,H
 Marta,Astra,2,2/13/2022 11:03:03 AM,45,M
 ```
-## LECTURA
+## LECTURA - File.ReadAllLines y reconversión de string
 Realizamos el paso inverso, es decir, leemos del archivo y lo convertimos a una lista de ingresados.
 
 ```C#
@@ -90,30 +92,32 @@ data.ForEach(row=>{ //2
 ```
 Comentarios:
 - //1 leemos la lista de strings del disco.  
-- //2 ciclo para cada una de las filas/row leidas  
-- //3 cada linea (Un string) la convierto el una lista de string,   indicando que es un dato distinto si está separado del anterior por una coma. Obteniendo una lista de campos  
-- //4 Creo un ingresado con los valores leidos  
-    - Nos viene muy bien que hay tantos tipos de datos distintos en nuestro modelo. Así podemos ver como covertimos cada `string` al tipo de datos que corresponda.
-    - string, char, DateTime, Enum, Int32
-- //5 Añadimos el ingresado a la lista de Ingresados.
+- //2 ciclo para trabajar cada una de las filas/row leidas  
+- //3 cada linea (Un `string`) la convierto el una `List` de `string`, indicando que es un dato distinto si está separado del anterior por una coma. Obteniendo una lista de campos  
+- //4 Creo cada _ingresado_ con los valores leidos  
+    - Nos viene muy bien que hay varios tipos de datos distintos en nuestro modelo. Así podemos ver como covertimos cada `string` al tipo de datos que corresponda.
+    - `string`, `char`, `DateTime`, `Enum`, `Int32`
+- //5 Añadimos el _ingresado_ a la lista de _Ingresados_.
 
-# Paso 3.- Deshacemos lo hecho. Este es nuesto punto CERO
+# Paso 3.- Deshacemos lo hecho. Este es nuestro punto CERO
+Limpiamos del código lo que no necesitamos.  
+
 - Es decir eliminamos del contructor el parámetro de ingresados, ya que a partir de ahora lo vamos a guardar en disco.
 - En el constructor sólo dejaremos la lectura inicial de datos.
 - Cada vez que se realice un ingreso o un alta debemos guardar de nuevo los datos, ya que estos han cambiado.
 
 # Paso 4.- Errores que corregiremos de acuerdo a las buenas prácticas.
-## E1
+## Err1
 El Constructor del `Sistema` es un método en al que sólo atañe crear el `Sistema` no es responsable de leer datos de disco.  
 **Solución**: Crearemos un método encargado de ello que será invocado desde el constructor.
 
-## E2
+## Err2
 Nuestro `Sistema` está leyendo directamente del disco para cargar unos datos.  
 No es bueno que un módulo o clase de alto nivel (El responsble de la Lógica de nuestro negocio) se preocupe de temas como dónde guardar los datos, y meno en el nombre del archivo.
 **Solución**: Creamos un clase, responsable de la gestión de los datos en el disco
 A esto se le llama IoC. **Inversion Of Control**
 
-## E3
+## Err3
 Crear esa utilidad como un clase interna o instanciada dentro de nuestro constructor, no es una buena pŕactica. Hace que el `Sistema` dependa de la instanciación y del Tipo de clse de la utilidad.
 **Solución**: Pasamos la clase como parámetro en la creación del `Sistema`.
 A esto le llamamos ID. **Decencency Inyection**, aunque todavía le falta un paso más.
@@ -129,7 +133,7 @@ dotnet new classlib -o src/AppSanitaria.Data
 
 > Hemos de tocar el Program.cs para indicar el nuevo parámetro.
 
-## E4
+## Err4
 A nuestra lógica de negocio le hemos inyectado, un servicio de repositorio del que ahora depende, pero el pricipio de [Inversión de Dependencia](https://es.wikipedia.org/wiki/Principio_de_inversi%C3%B3n_de_la_dependencia) que:  
 1.- Los módulos de alto nivel no deberían depender de los módulos de bajo nivel. Ambos deberían depender de abstracciones (p.ej., interfaces).  
 2.- Las abstracciones no deberían depender de los detalles. Los detalles (implementaciones concretas) deben depender de abstracciones.  
@@ -137,13 +141,13 @@ A nuestra lógica de negocio le hemos inyectado, un servicio de repositorio del 
 Básicamente esto significa que:
 Nuestro `Sistema` debe depender de una abstración (una `interface`). La abstracción no debe tener detalles, sino que estos deben ser implementados en la clase que implementará la interface.
 **Solución**:
-Así que creamos una interface.
+Así que creamos una interface. (Ctrl+. y generar interface)
 ```C#
 ```
 y hacemos que nuestra clase de detalle implemente esos métodos.
 ```C#
 ```
-Y refactorizamos nuestro Sistema para que dependa de la interfaz.
+Y refactorizamos nuestro sistema para que dependa de la interfaz.
 
 # Resumen de lo que hemos hecho
 
@@ -153,6 +157,18 @@ Hemos inyectado esa dependencia a través de un paraḿetro en el constructor, y
 Veamos si es así.   
 Si así fuese podríamos crear un nuevo servicio de persistencia, que en lugar de guardar en CSV, guarde en JSON, o guarde en BBDD.
 Sólo debe implementar la interfaz, pero nuestro sistema se va a acomportar exactamente igual. 
+
+Ejercicio hacer lo mismo en formato Json (_observa que no utilizamos los mismos métodos de leectur y escritura_):
+```C#
+using System.Text.Json;
+
+var txtJson = File.ReadAllText(datafile);
+var data = JsonSerializer.Deserialize<List<InfoVacPaciente>>(txtJson);
+          
+var options = new JsonSerializerOptions { WriteIndented = true };
+var txtJson = JsonSerializer.Serialize(data, options);
+File.WriteAllText(datafile, txtJson);
+```
 
 
 # Todavía no está bien.
