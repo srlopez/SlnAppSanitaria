@@ -21,8 +21,16 @@ namespace Sanitaria
             data = File.ReadAllLines(_file).ToList();
             data.ForEach(row=>{
                 var campos = row.Split(",");
-                for(var i = 0; i< campos.Length;i++)
-                Console.WriteLine(campos[i]);
+                // for(var i = 0; i< campos.Length;i++)
+                // Console.WriteLine(campos[i]);
+                var ingresado = new InfoVacPaciente{
+                    PacienteID = campos[0],
+                    TipoVacunacion = TipoVacuna.Ninguna,//campos[1] as TipoVacuna,
+                    FechaUltimaDosis = new DateTime(),//campos[2]),
+                    DosisRecibidas = Int32.Parse(campos[3]),
+                    Edad = Int32.Parse(campos[4]),
+                    Sexo = campos[5][0],
+                };
             });
 
         }
