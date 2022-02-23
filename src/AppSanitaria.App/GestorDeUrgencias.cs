@@ -15,7 +15,7 @@ namespace Sanitaria
             var _file = "../../data.csv";
             List <string> data = new(){};
             Ingresados.ForEach(i=>{
-                data.Add($"{i.PacienteID},{i.TipoVacunacion},{i.FechaUltimaDosis},{i.Edad},{i.Sexo}");
+                data.Add($"{i.PacienteID},{i.TipoVacunacion},{i.DosisRecibidas},{i.FechaUltimaDosis},{i.Edad},{i.Sexo}");
             });
             File.WriteAllLines(_file, data);
             data = File.ReadAllLines(_file).ToList();
@@ -23,11 +23,12 @@ namespace Sanitaria
                 var campos = row.Split(",");
                 // for(var i = 0; i< campos.Length;i++)
                 // Console.WriteLine(campos[i]);
+
                 var ingresado = new InfoVacPaciente{
                     PacienteID = campos[0],
-                    TipoVacunacion = TipoVacuna.Ninguna,//campos[1] as TipoVacuna,
-                    FechaUltimaDosis = new DateTime(),//campos[2]),
-                    DosisRecibidas = Int32.Parse(campos[3]),
+                    TipoVacunacion = (TipoVacuna) Enum.Parse(typeof(TipoVacuna), campos[1]),
+                    FechaUltimaDosis = DateTime.Parse(campos[3]),
+                    DosisRecibidas = Int32.Parse(campos[2]),
                     Edad = Int32.Parse(campos[4]),
                     Sexo = campos[5][0],
                 };
