@@ -1,4 +1,9 @@
-# 0.- Partiendo de una lista
+# Creación de un Servicio de Repositorio para Persistencia de Datos.
+
+Vamos a añadir persitencia a  nuestra aplicación Sanitaria.
+En este caso lo que vamos a persitir en disco son nuestros ingresados y en formato CSV.
+
+# Paso 0.- Partiendo de una lista codificada
 
 Hemos partido de una lista de datos (Ingresados) que estaba codificada en el `Sistema` `GestorDeUrgencias`.
 - Es correcto que le `Sistema`sea quien sabe con qué datos trabajamos. 
@@ -30,7 +35,7 @@ List<InfoVacPaciente> Ingresados { get; set; }= new()
         };
 ```
 
-# 1.- Creamos un archivo
+# Paso 1.- Creamos un archivo co System.IO.File
 Este es un paso temporal. Al crear el constuctor, éste nos a invitado a que pasemos como parámetro la lista de ingresados. Y así lo hemo hecho.
 
 Ya que el `Sistema` es el encargado de saber los datos, temporalmente, voy a escribir el código que salva/guarda la lista dentro del mismo `Sistema`. Se podría hacer en el `Program.cs`, pero al ser algo coyuntural que lo borraremos, lo puedo hacer donde quiera.
@@ -92,12 +97,12 @@ Comentarios:
     - string, char, DateTime, Enum, Int32
 - //5 Añadimos el ingresado a la lista de Ingresados.
 
-# 3.- Deshacemos lo hecho.
+# Paso 3.- Deshacemos lo hecho. Este es nuesto punto CERO
 - Es decir eliminamos del contructor el parámetro de ingresados, ya que a partir de ahora lo vamos a guardar en disco.
 - En el constructor sólo dejaremos la lectura inicial de datos.
 - Cada vez que se realice un ingreso o un alta debemos guardar de nuevo los datos, ya que estos han cambiado.
 
-# 4.- Errores
+# Paso 4.- Errores que corregiremos de acuerdo a las buenas prácticas.
 ## E1
 El Constructor del `Sistema` es un método en al que sólo atañe crear el `Sistema` no es responsable de leer datos de disco.  
 **Solución**: Crearemos un método encargado de ello que será invocado desde el constructor.
@@ -140,7 +145,7 @@ y hacemos que nuestra clase de detalle implemente esos métodos.
 ```
 Y refactorizamos nuestro Sistema para que dependa de la interfaz.
 
-# Resumen
+# Resumen de lo que hemos hecho
 
 Las sentencias que antes leían y/o escribían en disco en el método constructor, las hemos trasladado a un método distinto, ese método lo hemos encapsulado en una clase responsable de la persistencia en CSV. 
 Hemos inyectado esa dependencia a través de un paraḿetro en el constructor, y hemos desacoplado nuestro `Sistema` haciendo que dependa de una interfaz.
@@ -156,4 +161,8 @@ La conversión de datos entre [`Tiers y Layers`](https://www.baeldung.com/cs/lay
 Pero el asunto aquí es donde poner esas utilidades de conversión de datos.
 Hay que decidir un criterio, o creamos una utilidad de conversión para cada Layer que maneje nuestra aplicación, o creamos un clase utilidad que agrupe los conversores, o podemos añadirlo como métodos de nuestro Modelo, y es está donde ahora mismo me gustará que estén.
 
+# Embelleciendo nuestros métodos
+- Explicación sobre Lambdas.....
 
+- Añadimos un aCabecera y la saltamos
+- Saltamos posibles lineas en blanco
