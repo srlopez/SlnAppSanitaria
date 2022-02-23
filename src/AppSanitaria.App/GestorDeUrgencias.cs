@@ -2,33 +2,32 @@ using System;
 using Sanitaria.Modelos;
 using System.Collections.Generic;
 
+using System.IO;
+using System.Linq;
+
 namespace Sanitaria
 {
     public class GestorDeUrgencias
     {
-        public List<InfoVacPaciente> Ingresados { get; } = new()
+        public GestorDeUrgencias(List<InfoVacPaciente> ingresados)
         {
-            new InfoVacPaciente
-            {
-                PacienteID = "Luis",
-                TipoVacunacion = TipoVacuna.Ninguna,
-                DosisRecibidas = 0,
-                FechaUltimaDosis = DateTime.Now,
-                Edad = 23,
-                Sexo = 'H'
-            },
-            new InfoVacPaciente
-            {
-                PacienteID = "Marta",
-                TipoVacunacion = TipoVacuna.Astra,
-                DosisRecibidas = 2,
-                FechaUltimaDosis = DateTime.Now.AddDays(-10),
-                Edad = 45,
-                Sexo = 'M'
-            },
+            Ingresados = ingresados;
+            var _file = "../../data.csv";
+            List <string> data = new(){};
+            Ingresados.ForEach(i=>{
+                data.Add($"{i.PacienteID},{i.TipoVacunacion},{i.FechaUltimaDosis},{i.Edad},{i.Sexo}");
+            });
+            File.WriteAllLines(_file, data);
+            data = File.ReadAllLines(_file).ToList();
+            data.ForEach(row=>{
+                var campos = row.Split(",");
+                for(var i = 0; i< campos.Length;i++)
+                Console.WriteLine(campos[i]);
+            });
 
-        };
+        }
 
+        public List<InfoVacPaciente> Ingresados { get; set;} 
         public void RealizarIngreso(InfoVacPaciente p)
         {
             Ingresados.Add(p);
