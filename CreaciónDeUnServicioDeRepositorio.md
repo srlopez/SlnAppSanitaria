@@ -106,18 +106,18 @@ Limpiamos del código lo que no necesitamos.
 - En el constructor sólo dejaremos la lectura inicial de datos.
 - Cada vez que se realice un ingreso o un alta debemos guardar de nuevo los datos, ya que estos han cambiado.
 
-# Paso 4.- Errores que corregiremos de acuerdo a las buenas prácticas.
-## Err1
+# Paso 4.- Mejoras que podemos practicar de acuerdo a las buenas prácticas.
+## Mejora#1
 El Constructor del `Sistema` es un método en al que sólo atañe crear el `Sistema` no es responsable de leer datos de disco.  
 **Solución**: Crearemos un método encargado de ello que será invocado desde el constructor.
 
-## Err2
+## Mejora#2
 Nuestro `Sistema` está leyendo directamente del disco para cargar unos datos.  
 No es bueno que un módulo o clase de alto nivel (El responsble de la Lógica de nuestro negocio) se preocupe de temas como dónde guardar los datos, y meno en el nombre del archivo.
 **Solución**: Creamos un clase, responsable de la gestión de los datos en el disco
 A esto se le llama IoC. **Inversion Of Control**
 
-## Err3
+## Mejora#3
 Crear esa utilidad como un clase interna o instanciada dentro de nuestro constructor, no es una buena pŕactica. Hace que el `Sistema` dependa de la instanciación y del Tipo de clse de la utilidad.
 **Solución**: Pasamos la clase como parámetro en la creación del `Sistema`.
 A esto le llamamos ID. **Decencency Inyection**, aunque todavía le falta un paso más.
@@ -133,7 +133,7 @@ dotnet new classlib -o src/AppSanitaria.Data
 
 > Hemos de tocar el Program.cs para indicar el nuevo parámetro.
 
-## Err4
+## Mejora#4
 A nuestra lógica de negocio le hemos inyectado, un servicio de repositorio del que ahora depende, pero el pricipio de [Inversión de Dependencia](https://es.wikipedia.org/wiki/Principio_de_inversi%C3%B3n_de_la_dependencia) que:  
 1.- Los módulos de alto nivel no deberían depender de los módulos de bajo nivel. Ambos deberían depender de abstracciones (p.ej., interfaces).  
 2.- Las abstracciones no deberían depender de los detalles. Los detalles (implementaciones concretas) deben depender de abstracciones.  
