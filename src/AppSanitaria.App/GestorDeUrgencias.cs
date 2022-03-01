@@ -7,44 +7,61 @@ using System.Linq;
 
 namespace Sanitaria
 {
-    public class GestorDeUrgencias
+    class DataCSV
     {
-        public GestorDeUrgencias(List<InfoVacPaciente> ingresados)
+        string _file = "../../data.csv";
+        // Persitencia
+        public void Guardar(List<InfoVacPaciente> ingresados)
         {
-            Ingresados = ingresados;
-            var _file = "../../data.csv";
-            List <string> data = new(){};
-            Ingresados.ForEach(i=>{
-                data.Add($"{i.PacienteID},{i.TipoVacunacion},{i.DosisRecibidas},{i.FechaUltimaDosis},{i.Edad},{i.Sexo}");
+            List<string> data = new() { };
+            ingresados.ForEach(ingresado =>
+            {
+                var str = $"{ingresado.PacienteID},{ingresado.TipoVacunacion},{ingresado.DosisRecibidas},{ingresado.FechaUltimaDosis},{ingresado.Edad},{ingresado.Sexo}";
+                data.Add(str);
             });
             File.WriteAllLines(_file, data);
-            data = File.ReadAllLines(_file).ToList();
-            data.ForEach(row=>{
+        }
+        public List<InfoVacPaciente> Leer()
+        {
+            List<InfoVacPaciente> ingresados = new();
+            var data = File.ReadAllLines(_file).ToList();
+            data.ForEach(row =>
+            {
                 var campos = row.Split(",");
-                // for(var i = 0; i< campos.Length;i++)
-                // Console.WriteLine(campos[i]);
-
-                var ingresado = new InfoVacPaciente{
+                var ingresado = new InfoVacPaciente
+                {
                     PacienteID = campos[0],
-                    TipoVacunacion = (TipoVacuna) Enum.Parse(typeof(TipoVacuna), campos[1]),
+                    TipoVacunacion = (TipoVacuna)Enum.Parse(typeof(TipoVacuna), campos[1]),
                     FechaUltimaDosis = DateTime.Parse(campos[3]),
                     DosisRecibidas = Int32.Parse(campos[2]),
                     Edad = Int32.Parse(campos[4]),
                     Sexo = campos[5][0],
                 };
+                ingresados.Add(ingresado);
             });
-
+            return ingresados;
+        }
+    }
+    public class GestorDeUrgencias
+    {
+        public GestorDeUrgencias()
+        {
+            Ingresados = Repositorio.Leer();
         }
 
-        public List<InfoVacPaciente> Ingresados { get; set;} 
+        DataCSV Repositorio = new DataCSV();
+        public List<InfoVacPaciente> Ingresados { get; set; } = new();
         public void RealizarIngreso(InfoVacPaciente p)
         {
             Ingresados.Add(p);
+            Repositorio.Guardar(Ingresados);
         }
         public void DarDeAlta(InfoVacPaciente p)
         {
             Ingresados.Remove(p);
+            Repositorio.Guardar(Ingresados);
         }
+
         // Ejemplo de sobrecarga de métodos
         public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, InfoVacPaciente paciente)
         {
