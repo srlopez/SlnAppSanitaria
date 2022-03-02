@@ -32,6 +32,13 @@ Y éstos como constantes del servicio (reglas del negocio para confirmar la paut
 La aplicación, quedará centralizada en una clase (Lógica de Negocio) que contendrá como atributos la lista de pacients ingresados, y los metodos para su gestión, y el método que decide si se realiza la prueba, y lo que necesite.   
 También realizará el ingreso y alta de pacientes.
 
+## Fase2
+Leer el archivo sobre añadir un repositorio de datos.
+
+La idea es trabajar las buenas prácticas y la inyección de dependencias.
+Profundizaremos en las colecciones y las funciones como parámetros.
+
+
 
 
 
