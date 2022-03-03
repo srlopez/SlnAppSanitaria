@@ -184,9 +184,22 @@ En informática, inyección de dependencias (en inglés Dependency Injection, DI
 - Se suele poner en proyecto aparte el acceso a datos
 - El acceso a datos, debe hacer referencia a los Modelos, que están en el Proyecto del `Sistema`. Y el sistema debe hacer referencia al proyecto de persistencia de datos, para usarse cada vez que queramos guardar o leer datos. Se crea una **referencia cíclica**, que debemos eliminar. Y lo podemos hacer sacando los Modelos del proyecto principal.
 
+**Ojo**: Si tenemos el proyecto con distinta version NEt5/6 podemos tener algún error, que solucionamos o bien cambiando la plataforma de destino, o bien antes de ejecutar los comandos creando un archivo `global.json`
+```json
+{
+  "sdk": {
+    "version": "5.0.0"
+  }
+}
+```  
+Estos son los comandos para crear los proyectos  
 ```bsh
     dotnet new classlib -o src/AppSanitaria.App.Models
     dotnet new classlib -o src/AppSanitaria.Data
+    dotnet add src/AppSanitaria.Data reference src/AppSanitaria.App.Models
+    dotnet add src/AppSanitaria.App reference src/AppSanitaria.App.Models
+    dotnet sln AppSanitaria.sln add src/AppSanitaria.App.Models
+    dotnet sln AppSanitaria.sln add src/AppSanitaria.Data
 ```
 
 > Hemos de tocar el Program.cs para indicar el nuevo parámetro.
