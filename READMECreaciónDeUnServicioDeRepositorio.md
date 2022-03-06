@@ -4,9 +4,9 @@
 **Repositorio**: Almacén o lugar donde se guardan ciertas cosas.
 
 Vamos a añadir persitencia a  nuestra aplicación Sanitaria, através de un repositorio.  
-En este caso lo que vamos a persitir en disco son nuestros ingresados y en formato CSV.
+En este caso lo que vamos a persitir en disco son nuestros pacientes ingresados y en formato CSV (para empezar).
 
-# Paso 0.- Partiendo de una lista codificada
+# Los datos están codificados en el Sistema
 
 Hemos partido de una lista de datos (Ingresados) codificada en el `sistema` que hemos llamado `GestorDeUrgencias`.
 - **Es correcto** que el `Sistema` sea quien sabe con qué datos trabajamos. 
@@ -40,7 +40,7 @@ Así es como estaba inicializada la lista de Ingresados en el `GestorDeUrgencias
 ```
 Dotamos al sistema de un constructor desde el que inicializaremos nuestra lista.  
 
-# Paso 1.- Creamos un archivo utilizando la librería System.IO.File
+# Aprendemos el código/instrucciones para persistir en disco utilizando la librería System.IO.File
 Este es un paso _temporal_. Al crear el constuctor, éste nos a invitado a que pasemos como parámetro la lista de ingresados, ya que esta era un atributo/propiedad del mismo. Y así lo hemos hecho.
 
 Ya que el `Sistema` es el encargado de conocer nuestros datos, temporalmente, voy a escribir el código que salva/guarda la lista dentro del mismo `Sistema`. Se podría hacer en el `Program.cs`, pero al ser algo coyuntural que lo borraremos, lo puedo hacer donde quiera.
@@ -104,7 +104,7 @@ Comentarios:
     - `string`, `char`, `DateTime`, `Enum`, `Int32`
 - //5 Añadimos el _ingresado_ a la lista de _Ingresados_.
 
-# Paso 3.- Deshacemos lo hecho. Este es nuestro PUNTO CERO
+# Deshacemos lo hecho, ya que sabemos cómo manejar el flujo de Pacientes a disco y viceversa.
 Lo hecho hasta aquí es sólo para conocer las sentencia que tenemos que codificar para leer y escribir de disco nuestros datos.  
 
 Ahora, limpiamos del código lo que no necesitamos.  
@@ -113,7 +113,7 @@ Ahora, limpiamos del código lo que no necesitamos.
 - En el constructor sólo dejaremos la lectura inicial de datos.
 - Cada vez que se realice un **ingreso** o un **alta** debemos guardar de nuevo los datos, ya que estos han cambiado.
 
-# Paso 4.- Mejoras que podemos practicar de acuerdo a las buenas prácticas.
+# CREANDO EL REPOSITORIO: Mejoras que podemos practicar de acuerdo a las buenas prácticas.
 
 ## Mejora #1
 El Constructor del `Sistema` es un método en al que sólo atañe crear el `Sistema` no es responsable de leer datos de disco.  
