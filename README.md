@@ -1,8 +1,11 @@
 # Verificación de PCR
 
 ## Enunciado
-La siguiente imagen
-![Preoperatorio](Preoperatorio.jpg)
+La siguiente imagen   
+Original   |   Traducción
+:----------------------:|:-------------------------:
+![Preoperatorio](Preoperatorio.jpg) | ![Preoperatorio](Preoperatorio.png)  
+
 es el protocolo que se aplica a un paciente que ingresa en Urgencias para saber si se le ha de aplicar la prueba PCR.
 
 De la sóla imagen se puede extraer el enunciado de la Aplicación Sanitaria que vamos a analizar.
@@ -31,7 +34,8 @@ De la sóla imagen se puede extraer el enunciado de la Aplicación Sanitaria que
 La aplicación, quedará centralizada en una clase (Lógica de Negocio) que contendrá como atributos la lista de pacients ingresados, y los metodos para la gestión de ingreso y alta del paciente, y el método que decide si se realiza la prueba, y lo que necesite.   
 
 ## Fase2: Persistencia
-Leer el archivo sobre cómo añadir un repositorio u almacén de datos.[LEER](READMECreaciónDeUnServicioDeRepositorio.md)
+Leer el archivo sobre cómo añadir un repositorio u almacén de datos.  
+[LEER](READMECreaciónDeUnServicioDeRepositorio.md)
 
 La idea es trabajar las buenas prácticas y la inyección de dependencias.  
 Profundizaremos en las colecciones y las funciones como parámetros.  
