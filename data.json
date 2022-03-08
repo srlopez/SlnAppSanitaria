@@ -1,0 +1,18 @@
+[
+  {
+    "PacienteID": "Marcos",
+    "DosisRecibidas": 2,
+    "TipoVacunacion": 0,
+    "FechaUltimaDosis": "2022-02-12T00:00:00",
+    "Edad": 25,
+    "Sexo": "H"
+  },
+  {
+    "PacienteID": "Putin",
+    "DosisRecibidas": 1,
+    "TipoVacunacion": 4,
+    "FechaUltimaDosis": "2021-07-13T00:00:00",
+    "Edad": 69,
+    "Sexo": "H"
+  }
+]

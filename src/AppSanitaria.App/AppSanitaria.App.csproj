@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppSanitaria.Data\AppSanitaria.Data.csproj" />
+    <ProjectReference Include="..\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
