@@ -4,8 +4,25 @@ using Sanitaria;
 
 using Sanitaria.Modelos;
 
+using System.Collections.Generic;
+
+namespace Santitaria.Data{
+    public class FakeRepository : Sanitaria.Data.IData
+    {
+        public void Guardar(List<InfoVacPaciente> ingresados)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<InfoVacPaciente> Leer()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
 namespace Sanitaria
 {
+    using Sanitaria.Data;
 
     public class GestorDeUrgenciasTests
     {
@@ -23,7 +40,7 @@ namespace Sanitaria
                 Edad = 28,
                 Sexo = 'H'
             };
-            var sistema = new GestorDeUrgencias();
+            var sistema = new GestorDeUrgencias(new Santitaria.Data.FakeRepository());
             var cuenta = sistema.Ingresados.Count;
             // When
             sistema.RealizarIngreso(p1);
@@ -56,7 +73,7 @@ namespace Sanitaria
                 Edad = 28,
                 Sexo = 'H'
             };
-            GestorDeUrgencias urgencias = new GestorDeUrgencias();
+            GestorDeUrgencias urgencias = new GestorDeUrgencias(new Santitaria.Data.FakeRepository());
             // When
             var resultado1 = urgencias.VacunacionDelPaciente(p1);
             var resultado2 = urgencias.VacunacionDelPaciente(p2);
@@ -76,7 +93,7 @@ namespace Sanitaria
                 Edad = 28,
                 Sexo = 'H'
             };
-            GestorDeUrgencias urgencias = new GestorDeUrgencias();
+            GestorDeUrgencias urgencias = new GestorDeUrgencias(new Santitaria.Data.FakeRepository());
             // When
             var resultado = urgencias.VacunacionDelPaciente(p1);
             // Then
@@ -102,7 +119,7 @@ namespace Sanitaria
                 Edad = 28,
                 Sexo = 'H'
             };
-            GestorDeUrgencias urgencias = new GestorDeUrgencias();
+            GestorDeUrgencias urgencias = new GestorDeUrgencias(new Santitaria.Data.FakeRepository());
             // When
             var resultado1 = urgencias.VacunacionDelPaciente(p1);
             var resultado2 = urgencias.VacunacionDelPaciente(p2);
@@ -119,7 +136,7 @@ namespace Sanitaria
         public void RealizacionDePCR_Test(bool sintomas, bool inmunodepresion, bool pautaCompleta, bool pcrEsperado)
         {
             //
-            var urgencias = new GestorDeUrgencias();
+            var urgencias = new GestorDeUrgencias(new Santitaria.Data.FakeRepository());
             //
             var resultado = urgencias.RealizacionDePCR(sintomas, inmunodepresion, pautaCompleta);
             //

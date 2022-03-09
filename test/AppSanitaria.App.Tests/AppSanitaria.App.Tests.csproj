@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AppSanitaria.App\AppSanitaria.App.csproj" />
+    <ProjectReference Include="..\..\src\AppSanitaria.Data\AppSanitaria.Data.csproj" />
+    <ProjectReference Include="..\..\src\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj" />
   </ItemGroup>
 
 </Project>

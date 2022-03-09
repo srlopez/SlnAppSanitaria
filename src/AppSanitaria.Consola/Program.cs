@@ -4,7 +4,7 @@ using Sanitaria.Modelos;
 using System.Collections.Generic;
 using System;
 
-class App
+class AppSanitaria
 {
     public static void Main()
     {
