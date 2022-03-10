@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Sanitaria.Data
 {
-    public interface IData
+    public interface IRepoPaciente
     {
         void Guardar(List<InfoVacPaciente> ingresados);
         List<InfoVacPaciente> Leer();

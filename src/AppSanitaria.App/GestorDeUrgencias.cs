@@ -8,13 +8,13 @@ namespace Sanitaria
 {
     public class GestorDeUrgencias
     {
-        public GestorDeUrgencias(IData  repo)
+        public GestorDeUrgencias(IRepoPaciente  repo)
         {
             Repositorio = repo;
             Ingresados = Repositorio.Leer();
         }
 
-        IData Repositorio;
+        IRepoPaciente Repositorio;
         public List<InfoVacPaciente> Ingresados { get; set; } = new();
         public void RealizarIngreso(InfoVacPaciente p)
         {

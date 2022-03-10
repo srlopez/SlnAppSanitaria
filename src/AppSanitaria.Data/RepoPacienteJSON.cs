@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Sanitaria.Data
 {
-    public class DataJSON: IData
+    public class RepoPacienteJSON: IRepoPaciente
     {
         string _file = "../../data.json";
         // Persitencia

@@ -9,7 +9,7 @@ namespace Sanitaria.Data
 {
  
 
-    public class DataCSV : IData
+    public class RepoPacienteCSV : IRepoPaciente
     {
         string _file = "../../data.csv";
         // Persitencia

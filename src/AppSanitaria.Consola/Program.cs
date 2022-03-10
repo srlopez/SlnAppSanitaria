@@ -9,7 +9,7 @@ class AppSanitaria
     public static void Main()
     {
         // Más sencillo no puede
-        var repositorio = new Sanitaria.Data.DataCSV();
+        var repositorio = new Sanitaria.Data.RepoPacienteCSV();
         var view = new Vista();
         var sistema = new GestorDeUrgencias(repositorio);
         var controlador = new Controlador(view, sistema);

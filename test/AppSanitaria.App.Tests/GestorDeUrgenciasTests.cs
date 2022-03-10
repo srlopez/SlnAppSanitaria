@@ -7,7 +7,7 @@ using Sanitaria.Modelos;
 using System.Collections.Generic;
 
 namespace Santitaria.Data{
-    public class FakeRepository : Sanitaria.Data.IData
+    public class FakeRepository : Sanitaria.Data.IRepoPaciente
     {
         public void Guardar(List<InfoVacPaciente> ingresados)
         {
