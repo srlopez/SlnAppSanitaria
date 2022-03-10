@@ -54,8 +54,13 @@ namespace Sanitaria.UI.Consola
                 var ed = _vista.TryObtenerDatoDeTipo<int>("Edad");
                 var sx = _vista.TryObtenerCaracterDeString("Sexo", "HM", 'H');
                 var tv = _vista.TryObtenerElementoDeLista<TipoVacuna>("Vacunas", _vista.EnumToList<TipoVacuna>(), "Indica el tipo de vacuna");
-                var nd = _vista.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
-                var fu = _vista.TryObtenerFecha("Fecha de la última dosis");
+                var nd = 0;
+                var fu = DateTime.Now;
+                if (tv != TipoVacuna.Ninguna)
+                {
+                    nd = _vista.TryObtenerDatoDeTipo<int>("Numero de dosis recibidas");
+                    fu = _vista.TryObtenerFecha("Fecha de la última dosis");
+                }
 
                 InfoVacPaciente paciente = new InfoVacPaciente
                 {

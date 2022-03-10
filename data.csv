@@ -1,3 +1,4 @@
-Luis,Ninguna,0,2022/3/1 08:21:58,23,H
-Marta,Astra,2,2022/2/19 08:21:58,45,M
-Pedro,Moderna,1,2022/2/16 00:00:00,30,H
+ID,TipoVac,Dosis,UltDosis,Edad,Sexo
+Luis,Ninguna,0,3/1/2022 8:21:58 AM,23,H
+Marta,Astra,2,2/19/2022 8:21:58 AM,45,M
+Pedro,Moderna,1,2/16/2022 12:00:00 AM,30,H

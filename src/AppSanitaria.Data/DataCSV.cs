@@ -15,7 +15,9 @@ namespace Sanitaria.Data
         // Persitencia
         public void Guardar(List<InfoVacPaciente> ingresados)
         {
-            List<string> data = new() { };
+            // Decoramos el CSV con una cabecera
+            var cabecera = "ID,TipoVac,Dosis,UltDosis,Edad,Sexo";
+            List<string> data = new() { cabecera };
             ingresados.ForEach(ingresado =>
             {
                 var str = $"{ingresado.PacienteID},{ingresado.TipoVacunacion},{ingresado.DosisRecibidas},{ingresado.FechaUltimaDosis},{ingresado.Edad},{ingresado.Sexo}";
@@ -26,7 +28,11 @@ namespace Sanitaria.Data
         public List<InfoVacPaciente> Leer()
         {
             List<InfoVacPaciente> ingresados = new();
-            var data = File.ReadAllLines(_file).ToList();
+            // Nos saltamos la cabecera y las líneas en blanco
+            var data = File.ReadAllLines(_file)
+                .Skip(1)
+                .Where(row=>row.Length>0)
+                .ToList();
             data.ForEach(row =>
             {
                 var campos = row.Split(",");
