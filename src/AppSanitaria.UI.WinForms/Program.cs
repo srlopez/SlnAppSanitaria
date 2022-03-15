@@ -16,7 +16,7 @@ namespace Sanitaria.UI.WinForms
         [STAThread]
         static void Main()
         {
-            var repositorio = new Sanitaria.Data.RepoPacienteJSON();
+            var repositorio = new Sanitaria.Data.RepoPacienteCSV();
             var sistema = new GestorDeUrgencias(repositorio);
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
