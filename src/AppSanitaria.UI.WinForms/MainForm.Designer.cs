@@ -45,6 +45,13 @@ namespace Sanitaria.UI.WinForms
             this.btnM = new System.Windows.Forms.RadioButton();
             this.dataFUVacuna = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnAlta = new System.Windows.Forms.Button();
+            this.grpPCR = new System.Windows.Forms.GroupBox();
+            this.chkInmunodepresion = new System.Windows.Forms.CheckBox();
+            this.chkSintomas = new System.Windows.Forms.CheckBox();
+            this.lblPCRID = new System.Windows.Forms.Label();
+            this.btnPCR = new System.Windows.Forms.Button();
+            this.grpPCR.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxIngresados
@@ -53,8 +60,9 @@ namespace Sanitaria.UI.WinForms
             this.listBoxIngresados.ItemHeight = 15;
             this.listBoxIngresados.Location = new System.Drawing.Point(28, 51);
             this.listBoxIngresados.Name = "listBoxIngresados";
-            this.listBoxIngresados.Size = new System.Drawing.Size(299, 379);
+            this.listBoxIngresados.Size = new System.Drawing.Size(299, 349);
             this.listBoxIngresados.TabIndex = 0;
+            this.listBoxIngresados.SelectedValueChanged += new System.EventHandler(this.listBoxIngresados_SelectedValueChanged);
             // 
             // Ingresados
             // 
@@ -147,7 +155,6 @@ namespace Sanitaria.UI.WinForms
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(200, 23);
             this.cmbTipo.TabIndex = 14;
-            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // btnH
             // 
@@ -178,19 +185,84 @@ namespace Sanitaria.UI.WinForms
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(579, 222);
+            this.btnAdd.Location = new System.Drawing.Point(540, 222);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(114, 23);
             this.btnAdd.TabIndex = 18;
             this.btnAdd.Text = "Ingresar";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnAlta
+            // 
+            this.btnAlta.Location = new System.Drawing.Point(213, 408);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(114, 23);
+            this.btnAlta.TabIndex = 19;
+            this.btnAlta.Text = "Alta Paciente";
+            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
+            // grpPCR
+            // 
+            this.grpPCR.Controls.Add(this.chkInmunodepresion);
+            this.grpPCR.Controls.Add(this.chkSintomas);
+            this.grpPCR.Controls.Add(this.lblPCRID);
+            this.grpPCR.Location = new System.Drawing.Point(386, 262);
+            this.grpPCR.Name = "grpPCR";
+            this.grpPCR.Size = new System.Drawing.Size(268, 137);
+            this.grpPCR.TabIndex = 20;
+            this.grpPCR.TabStop = false;
+            this.grpPCR.Text = "Prueba PCR";
+            // 
+            // chkInmunodepresion
+            // 
+            this.chkInmunodepresion.AutoSize = true;
+            this.chkInmunodepresion.Location = new System.Drawing.Point(69, 99);
+            this.chkInmunodepresion.Name = "chkInmunodepresion";
+            this.chkInmunodepresion.Size = new System.Drawing.Size(120, 19);
+            this.chkInmunodepresion.TabIndex = 19;
+            this.chkInmunodepresion.Text = "Inmunodepresion";
+            this.chkInmunodepresion.UseVisualStyleBackColor = true;
+            // 
+            // chkSintomas
+            // 
+            this.chkSintomas.AutoSize = true;
+            this.chkSintomas.Location = new System.Drawing.Point(69, 74);
+            this.chkSintomas.Name = "chkSintomas";
+            this.chkSintomas.Size = new System.Drawing.Size(75, 19);
+            this.chkSintomas.TabIndex = 18;
+            this.chkSintomas.Text = "Sintomas";
+            this.chkSintomas.UseVisualStyleBackColor = true;
+            // 
+            // lblPCRID
+            // 
+            this.lblPCRID.AutoSize = true;
+            this.lblPCRID.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPCRID.Location = new System.Drawing.Point(16, 32);
+            this.lblPCRID.Name = "lblPCRID";
+            this.lblPCRID.Size = new System.Drawing.Size(40, 25);
+            this.lblPCRID.TabIndex = 0;
+            this.lblPCRID.Text = "n/a";
+            // 
+            // btnPCR
+            // 
+            this.btnPCR.Location = new System.Drawing.Point(540, 408);
+            this.btnPCR.Name = "btnPCR";
+            this.btnPCR.Size = new System.Drawing.Size(114, 23);
+            this.btnPCR.TabIndex = 21;
+            this.btnPCR.Text = "PCR";
+            this.btnPCR.UseVisualStyleBackColor = true;
+            this.btnPCR.Click += new System.EventHandler(this.btnPCR_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.Controls.Add(this.btnPCR);
+            this.Controls.Add(this.grpPCR);
+            this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataFUVacuna);
             this.Controls.Add(this.btnM);
@@ -210,6 +282,8 @@ namespace Sanitaria.UI.WinForms
             this.Name = "MainForm";
             this.Text = "Prueba PCR";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.grpPCR.ResumeLayout(false);
+            this.grpPCR.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +307,12 @@ namespace Sanitaria.UI.WinForms
         private System.Windows.Forms.RadioButton btnM;
         private System.Windows.Forms.DateTimePicker dataFUVacuna;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.GroupBox grpPCR;
+        private System.Windows.Forms.Label lblPCRID;
+        private System.Windows.Forms.Button btnPCR;
+        private System.Windows.Forms.CheckBox chkInmunodepresion;
+        private System.Windows.Forms.CheckBox chkSintomas;
     }
 }
 

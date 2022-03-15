@@ -22,11 +22,15 @@ namespace Sanitaria.UI.WinForms
             InitializeComponent();
         }
 
+        // METODOS DE PREPARACION DE LA INTERFACE
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var ingresados = _sistema.Ingresados;
-            ingresados.ForEach(i => listBoxIngresados.Items.Add(i));
+            CargarPacientes();
+            CargarTipos();
+        }
 
+        private void CargarTipos()
+        {
             cmbTipo.Items.Add(TipoVacuna.Ninguna);
             cmbTipo.Items.Add(TipoVacuna.Astra);
             cmbTipo.Items.Add(TipoVacuna.Moderna);
@@ -34,8 +38,15 @@ namespace Sanitaria.UI.WinForms
             cmbTipo.Items.Add(TipoVacuna.JandJ);
         }
 
-    
+        private void CargarPacientes()
+        {
+            listBoxIngresados.Items.Clear();
+            var ingresados = _sistema.Ingresados;
+            ingresados.ForEach(i => listBoxIngresados.Items.Add(i));
+        }
 
+        // METODOS RELATIVOS A LOS CASOS DE USO
+        // INGRESO
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var paciente = new InfoVacPaciente()
@@ -48,15 +59,35 @@ namespace Sanitaria.UI.WinForms
                 FechaUltimaDosis = dataFUVacuna.Value
             };
             _sistema.RealizarIngreso(paciente);
-
-            listBoxIngresados.Items.Clear();
-            var ingresados = _sistema.Ingresados;
-            ingresados.ForEach(i => listBoxIngresados.Items.Add(i));
+            CargarPacientes();
+        }
+        // ALTA
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            var paciente = (InfoVacPaciente) listBoxIngresados.SelectedItem;
+            if (paciente == null) return;
+            _sistema.DarDeAlta(paciente);
+            CargarPacientes();
         }
 
-        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnPCR_Click(object sender, EventArgs e)
         {
+            var sintomas = chkSintomas.Checked;
+            var inmuno = chkInmunodepresion.Checked;
+            var paciente = (InfoVacPaciente)listBoxIngresados.SelectedItem;
+            if (paciente == null) return;
+            
+            var pcr = _sistema.RealizacionDePCR(sintomas, inmuno, paciente);
 
+            MessageBox.Show(pcr ? "SI PCR": "NO PCR"); ;
+        }
+
+        private void listBoxIngresados_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var paciente = (InfoVacPaciente)listBoxIngresados.SelectedItem;
+            if (paciente == null) return;
+
+            lblPCRID.Text = paciente.PacienteID;
         }
     }
 }

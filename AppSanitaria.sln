@@ -5,29 +5,32 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C760199B-E784-4C0B-BDAE-38B85929E4D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.App", "src\AppSanitaria.App\AppSanitaria.App.csproj", "{BE9DC52A-6F45-43F1-B6AD-E5B97DD948BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.App", "src\AppSanitaria.App\AppSanitaria.App.csproj", "{BE9DC52A-6F45-43F1-B6AD-E5B97DD948BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Data", "src\AppSanitaria.Data\AppSanitaria.Data.csproj", "{827B340A-7967-4450-8231-9F73A80356B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.Data", "src\AppSanitaria.Data\AppSanitaria.Data.csproj", "{827B340A-7967-4450-8231-9F73A80356B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Modelos", "src\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj", "{8F72F91E-DC52-4D12-9B82-AE4BDA2BEEA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.Modelos", "src\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj", "{8F72F91E-DC52-4D12-9B82-AE4BDA2BEEA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.UI.Consola", "src\AppSanitaria.UI.Consola\AppSanitaria.UI.Consola.csproj", "{945A4743-7CBD-4D1D-82F4-2D5B5A56A3B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.UI.Consola", "src\AppSanitaria.UI.Consola\AppSanitaria.UI.Consola.csproj", "{945A4743-7CBD-4D1D-82F4-2D5B5A56A3B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.UI.WinForms", "src\AppSanitaria.UI.WinForms\AppSanitaria.UI.WinForms.csproj", "{CF35F55E-4CD4-4E5C-B9CB-75F51144E39F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.UI.WinForms", "src\AppSanitaria.UI.WinForms\AppSanitaria.UI.WinForms.csproj", "{CF35F55E-4CD4-4E5C-B9CB-75F51144E39F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F93534A9-0718-4C6C-828C-A3F176465D16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.App.Tests", "test\AppSanitaria.App.Tests\AppSanitaria.App.Tests.csproj", "{F1DD8157-D00E-4F88-A9FB-8F4400C5A06F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.App.Tests", "test\AppSanitaria.App.Tests\AppSanitaria.App.Tests.csproj", "{F1DD8157-D00E-4F88-A9FB-8F4400C5A06F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.UI.Consola.Tests", "test\AppSanitaria.UI.Consola.Tests\AppSanitaria.UI.Consola.Tests.csproj", "{157B54F0-0E10-44D2-BAEA-9443254EC7BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.UI.Consola.Tests", "test\AppSanitaria.UI.Consola.Tests\AppSanitaria.UI.Consola.Tests.csproj", "{157B54F0-0E10-44D2-BAEA-9443254EC7BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEFCD546-43BC-40D7-BA3C-E733EBF4C7AD}"
+	ProjectSection(SolutionItems) = preProject
+		data\ingresos.csv = data\ingresos.csv
+		data\ingresos.json = data\ingresos.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BE9DC52A-6F45-43F1-B6AD-E5B97DD948BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -59,6 +62,9 @@ Global
 		{157B54F0-0E10-44D2-BAEA-9443254EC7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{157B54F0-0E10-44D2-BAEA-9443254EC7BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BE9DC52A-6F45-43F1-B6AD-E5B97DD948BA} = {C760199B-E784-4C0B-BDAE-38B85929E4D2}
 		{827B340A-7967-4450-8231-9F73A80356B9} = {C760199B-E784-4C0B-BDAE-38B85929E4D2}
@@ -67,5 +73,8 @@ Global
 		{CF35F55E-4CD4-4E5C-B9CB-75F51144E39F} = {C760199B-E784-4C0B-BDAE-38B85929E4D2}
 		{F1DD8157-D00E-4F88-A9FB-8F4400C5A06F} = {F93534A9-0718-4C6C-828C-A3F176465D16}
 		{157B54F0-0E10-44D2-BAEA-9443254EC7BD} = {F93534A9-0718-4C6C-828C-A3F176465D16}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECC43EF0-4C98-49F1-BBBE-C04917F56C7C}
 	EndGlobalSection
 EndGlobal
