@@ -29,6 +29,15 @@ namespace Sanitaria.UI.WinForms
             CargarTipos();
         }
 
+        private void lboxIngresados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
+            if (paciente == null) return;
+
+            // Mostramos el Paciente ingresado
+            lblPCRID.Text = paciente.ToString();
+        }
+        
         private void CargarTipos()
         {
             cmbTipo.Items.Add(TipoVacuna.Ninguna);
@@ -36,17 +45,21 @@ namespace Sanitaria.UI.WinForms
             cmbTipo.Items.Add(TipoVacuna.Moderna);
             cmbTipo.Items.Add(TipoVacuna.Pfizer);
             cmbTipo.Items.Add(TipoVacuna.JandJ);
+            cmbTipo.Items.AddRange(Enum.GetNames(typeof(TipoVacuna)));
         }
 
         private void CargarPacientes()
         {
+            // Limpiamos la lista
             lboxIngresados.Items.Clear();
+            // La cargamos con nuestros datos
             var ingresados = _sistema.Ingresados;
             ingresados.ForEach(i => lboxIngresados.Items.Add(i));
-
+            // Marcamos el primero como seleccionado
             if(ingresados.Count>0) lboxIngresados.SelectedIndex = 0;
         }
 
+        
         // METODOS RELATIVOS A LOS CASOS DE USO
         // INGRESO
         private void btnAdd_Click(object sender, EventArgs e)
@@ -78,6 +91,7 @@ namespace Sanitaria.UI.WinForms
             CargarPacientes();
         }
 
+        // VERIFICACION DE PRUEBA PCR
         private void btnPCR_Click(object sender, EventArgs e)
         {
             // Obtenemos los datos para realizar la prueba
@@ -87,21 +101,11 @@ namespace Sanitaria.UI.WinForms
             if (paciente == null) return;
             
             // Realizamos la prueba
-            var pcr = _sistema.RealizacionDePCR(sintomas, inmuno, paciente);
+            var testPCR = _sistema.RealizacionDePCR(sintomas, inmuno, paciente);
 
             // Mostramos el resultado
-            MessageBox.Show(pcr ? "SI": "NO", "Test PCR"); ;
+            MessageBox.Show(testPCR ? "SI": "NO", "Test PCR"); ;
         }
 
-  
-
-        private void lboxIngresados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
-            if (paciente == null) return;
-
-            // Mostramos el Paciente ingresado
-            lblPCRID.Text = paciente.ToString();
-        }
     }
 }
