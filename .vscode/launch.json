@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/AppSanitaria.Consola/bin/Debug/net5.0/AppSanitaria.Consola.dll",
+            "program": "${workspaceFolder}/src/AppSanitaria.UI.Consola/bin/Debug/net5.0/AppSanitaria.UI.Consola.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/AppSanitaria.Consola",
+            "cwd": "${workspaceFolder}/src/AppSanitaria.UI.Consola",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             //"console": "internalConsole",
             "console": "integratedTerminal",

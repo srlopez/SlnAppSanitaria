@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AppSanitaria.Consola\AppSanitaria.UI.Consola.csproj" />
+    <ProjectReference Include="..\..\src\AppSanitaria.UI.Consola\AppSanitaria.UI.Consola.csproj" />
   </ItemGroup>
 
 </Project>
