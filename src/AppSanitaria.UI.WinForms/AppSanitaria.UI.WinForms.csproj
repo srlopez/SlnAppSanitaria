@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppSanitaria.App\AppSanitaria.App.csproj" />
+    <ProjectReference Include="..\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj" />
+  </ItemGroup>
+
+</Project>

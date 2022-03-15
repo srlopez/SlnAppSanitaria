@@ -5,19 +5,21 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6204DAEE-6AEC-4EA9-B491-2108BAB14E2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.App", "src\AppSanitaria.App\AppSanitaria.App.csproj", "{52D186CC-D457-4A40-98B7-FFE889C74145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.App", "src\AppSanitaria.App\AppSanitaria.App.csproj", "{52D186CC-D457-4A40-98B7-FFE889C74145}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EAD98306-0411-49E4-B04F-83A84AE68683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.App.Tests", "test\AppSanitaria.App.Tests\AppSanitaria.App.Tests.csproj", "{47D8A4F9-7B1A-48E2-A726-F8B6A81D0270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.App.Tests", "test\AppSanitaria.App.Tests\AppSanitaria.App.Tests.csproj", "{47D8A4F9-7B1A-48E2-A726-F8B6A81D0270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Consola", "src\AppSanitaria.Consola\AppSanitaria.Consola.csproj", "{CEC8321E-6BE1-440A-9F06-BF254C1B1C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.UI.Consola", "src\AppSanitaria.Consola\AppSanitaria.UI.Consola.csproj", "{CEC8321E-6BE1-440A-9F06-BF254C1B1C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Consola.Tests", "test\AppSanitaria.Consola.Tests\AppSanitaria.Consola.Tests.csproj", "{A76D240F-8505-4FF0-828D-1CA5A984C1D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.UI.Consola.Tests", "test\AppSanitaria.Consola.Tests\AppSanitaria.UI.Consola.Tests.csproj", "{A76D240F-8505-4FF0-828D-1CA5A984C1D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Data", "src\AppSanitaria.Data\AppSanitaria.Data.csproj", "{65E36988-E67B-421E-882E-5DEEB2E30DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.Data", "src\AppSanitaria.Data\AppSanitaria.Data.csproj", "{65E36988-E67B-421E-882E-5DEEB2E30DF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.Modelos", "src\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj", "{62840A4E-0775-43B8-9DCD-513DF4056912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSanitaria.Modelos", "src\AppSanitaria.Modelos\AppSanitaria.Modelos.csproj", "{62840A4E-0775-43B8-9DCD-513DF4056912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSanitaria.UI.WinForms", "src\AppSanitaria.UI.WinForms\AppSanitaria.UI.WinForms.csproj", "{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{52D186CC-D457-4A40-98B7-FFE889C74145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -68,18 +67,6 @@ Global
 		{CEC8321E-6BE1-440A-9F06-BF254C1B1C59}.Release|x64.Build.0 = Release|Any CPU
 		{CEC8321E-6BE1-440A-9F06-BF254C1B1C59}.Release|x86.ActiveCfg = Release|Any CPU
 		{CEC8321E-6BE1-440A-9F06-BF254C1B1C59}.Release|x86.Build.0 = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|x64.Build.0 = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Debug|x86.Build.0 = Debug|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|x64.ActiveCfg = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|x64.Build.0 = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|x86.ActiveCfg = Release|Any CPU
-		{CF787926-9154-4855-8B0F-9B9649EAD812}.Release|x86.Build.0 = Release|Any CPU
 		{A76D240F-8505-4FF0-828D-1CA5A984C1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A76D240F-8505-4FF0-828D-1CA5A984C1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A76D240F-8505-4FF0-828D-1CA5A984C1D4}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -116,6 +103,21 @@ Global
 		{62840A4E-0775-43B8-9DCD-513DF4056912}.Release|x64.Build.0 = Release|Any CPU
 		{62840A4E-0775-43B8-9DCD-513DF4056912}.Release|x86.ActiveCfg = Release|Any CPU
 		{62840A4E-0775-43B8-9DCD-513DF4056912}.Release|x86.Build.0 = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|x64.Build.0 = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Debug|x86.Build.0 = Debug|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|x64.ActiveCfg = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|x64.Build.0 = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|x86.ActiveCfg = Release|Any CPU
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{52D186CC-D457-4A40-98B7-FFE889C74145} = {6204DAEE-6AEC-4EA9-B491-2108BAB14E2C}
@@ -124,5 +126,9 @@ Global
 		{A76D240F-8505-4FF0-828D-1CA5A984C1D4} = {EAD98306-0411-49E4-B04F-83A84AE68683}
 		{65E36988-E67B-421E-882E-5DEEB2E30DF6} = {6204DAEE-6AEC-4EA9-B491-2108BAB14E2C}
 		{62840A4E-0775-43B8-9DCD-513DF4056912} = {6204DAEE-6AEC-4EA9-B491-2108BAB14E2C}
+		{B2E942C4-BB6C-4EEF-8942-554DE6B44B0A} = {6204DAEE-6AEC-4EA9-B491-2108BAB14E2C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37C51CCC-DB37-4084-A1A7-47CF97A5D440}
 	EndGlobalSection
 EndGlobal
