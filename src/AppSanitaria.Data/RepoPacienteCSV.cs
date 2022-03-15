@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Sanitaria.Data
 {
- 
+
 
     public class RepoPacienteCSV : IRepoPaciente
     {
-        string _file = "../../data.csv";
+        string _file = IRepoPaciente.DataPath + "ingresos.csv";
         // Persitencia
         public void Guardar(List<InfoVacPaciente> ingresados)
         {
@@ -31,7 +31,7 @@ namespace Sanitaria.Data
             // Nos saltamos la cabecera y las líneas en blanco
             var data = File.ReadAllLines(_file)
                 .Skip(1)
-                .Where(row=>row.Length>0)
+                .Where(row => row.Length > 0)
                 .ToList();
             data.ForEach(row =>
             {
