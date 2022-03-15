@@ -29,9 +29,9 @@ namespace Sanitaria.UI.WinForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBoxIngresados = new System.Windows.Forms.ListBox();
-            this.Ingresados = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.Label();
+            this.lboxIngresados = new System.Windows.Forms.ListBox();
+            this.lblIngresados = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
             this.lblEdad = new System.Windows.Forms.Label();
@@ -56,31 +56,31 @@ namespace Sanitaria.UI.WinForms
             // 
             // listBoxIngresados
             // 
-            this.listBoxIngresados.FormattingEnabled = true;
-            this.listBoxIngresados.ItemHeight = 15;
-            this.listBoxIngresados.Location = new System.Drawing.Point(28, 51);
-            this.listBoxIngresados.Name = "listBoxIngresados";
-            this.listBoxIngresados.Size = new System.Drawing.Size(299, 349);
-            this.listBoxIngresados.TabIndex = 0;
-            this.listBoxIngresados.SelectedValueChanged += new System.EventHandler(this.listBoxIngresados_SelectedValueChanged);
+            this.lboxIngresados.FormattingEnabled = true;
+            this.lboxIngresados.ItemHeight = 15;
+            this.lboxIngresados.Location = new System.Drawing.Point(28, 51);
+            this.lboxIngresados.Name = "listBoxIngresados";
+            this.lboxIngresados.Size = new System.Drawing.Size(299, 349);
+            this.lboxIngresados.TabIndex = 0;
+            this.lboxIngresados.SelectedValueChanged += new System.EventHandler(this.listBoxIngresados_SelectedValueChanged);
             // 
             // Ingresados
             // 
-            this.Ingresados.AutoSize = true;
-            this.Ingresados.Location = new System.Drawing.Point(28, 32);
-            this.Ingresados.Name = "Ingresados";
-            this.Ingresados.Size = new System.Drawing.Size(64, 15);
-            this.Ingresados.TabIndex = 1;
-            this.Ingresados.Text = "Ingresados";
+            this.lblIngresados.AutoSize = true;
+            this.lblIngresados.Location = new System.Drawing.Point(28, 32);
+            this.lblIngresados.Name = "Ingresados";
+            this.lblIngresados.Size = new System.Drawing.Size(64, 15);
+            this.lblIngresados.TabIndex = 1;
+            this.lblIngresados.Text = "Ingresados";
             // 
             // ID
             // 
-            this.ID.AutoSize = true;
-            this.ID.Location = new System.Drawing.Point(386, 52);
-            this.ID.Name = "ID";
-            this.ID.Size = new System.Drawing.Size(18, 15);
-            this.ID.TabIndex = 2;
-            this.ID.Text = "ID";
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(386, 52);
+            this.lblID.Name = "ID";
+            this.lblID.Size = new System.Drawing.Size(18, 15);
+            this.lblID.TabIndex = 2;
+            this.lblID.Text = "ID";
             // 
             // txtID
             // 
@@ -276,9 +276,9 @@ namespace Sanitaria.UI.WinForms
             this.Controls.Add(this.txtEdad);
             this.Controls.Add(this.lblEdad);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.ID);
-            this.Controls.Add(this.Ingresados);
-            this.Controls.Add(this.listBoxIngresados);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.lblIngresados);
+            this.Controls.Add(this.lboxIngresados);
             this.Name = "MainForm";
             this.Text = "Prueba PCR";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -291,9 +291,9 @@ namespace Sanitaria.UI.WinForms
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBoxIngresados;
-        private System.Windows.Forms.Label Ingresados;
-        private System.Windows.Forms.Label ID;
+        private System.Windows.Forms.ListBox lboxIngresados;
+        private System.Windows.Forms.Label lblIngresados;
+        private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtEdad;
         private System.Windows.Forms.Label lblEdad;

@@ -22,7 +22,7 @@ namespace Sanitaria.UI.WinForms
             InitializeComponent();
         }
 
-        // METODOS DE PREPARACION DE LA INTERFACE
+        // METODOS DE PREPARACION DE LA INTERFACE DE USUARIO
         private void MainForm_Load(object sender, EventArgs e)
         {
             CargarPacientes();
@@ -40,15 +40,16 @@ namespace Sanitaria.UI.WinForms
 
         private void CargarPacientes()
         {
-            listBoxIngresados.Items.Clear();
+            lboxIngresados.Items.Clear();
             var ingresados = _sistema.Ingresados;
-            ingresados.ForEach(i => listBoxIngresados.Items.Add(i));
+            ingresados.ForEach(i => lboxIngresados.Items.Add(i));
         }
 
         // METODOS RELATIVOS A LOS CASOS DE USO
         // INGRESO
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // Nuevo Paciente
             var paciente = new InfoVacPaciente()
             {
                 PacienteID = txtID.Text,
@@ -58,35 +59,43 @@ namespace Sanitaria.UI.WinForms
                 DosisRecibidas = Int32.Parse(txtDosis.Text),
                 FechaUltimaDosis = dataFUVacuna.Value
             };
+            // Ingreso
             _sistema.RealizarIngreso(paciente);
+            // Refrescamos la pantalla
             CargarPacientes();
         }
         // ALTA
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            var paciente = (InfoVacPaciente) listBoxIngresados.SelectedItem;
+            // Seleccion del paciente
+            var paciente = (InfoVacPaciente) lboxIngresados.SelectedItem;
             if (paciente == null) return;
+            // Alta
             _sistema.DarDeAlta(paciente);
+            // Refrescamos
             CargarPacientes();
         }
 
         private void btnPCR_Click(object sender, EventArgs e)
         {
+            // Obtenemos los datos para realizar la prueba
             var sintomas = chkSintomas.Checked;
             var inmuno = chkInmunodepresion.Checked;
-            var paciente = (InfoVacPaciente)listBoxIngresados.SelectedItem;
+            var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
             if (paciente == null) return;
             
+            // Realizamos la prueba
             var pcr = _sistema.RealizacionDePCR(sintomas, inmuno, paciente);
-
+            // Mostramos el resultado
             MessageBox.Show(pcr ? "SI PCR": "NO PCR"); ;
         }
 
         private void listBoxIngresados_SelectedValueChanged(object sender, EventArgs e)
         {
-            var paciente = (InfoVacPaciente)listBoxIngresados.SelectedItem;
+            var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
             if (paciente == null) return;
 
+            // Mostramos el Paciente ingresado
             lblPCRID.Text = paciente.PacienteID;
         }
     }
