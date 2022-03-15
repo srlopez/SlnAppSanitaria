@@ -25,8 +25,8 @@ namespace Sanitaria.UI.WinForms
         // METODOS DE PREPARACION DE LA INTERFACE DE USUARIO
         private void MainForm_Load(object sender, EventArgs e)
         {
-            CargarPacientes();
-            CargarTipos();
+            CargarPacientesIngresados();
+            CargarTipoVacuna();
         }
 
         private void lboxIngresados_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,17 +38,11 @@ namespace Sanitaria.UI.WinForms
             lblPCRID.Text = paciente.ToString();
         }
         
-        private void CargarTipos()
-        {
-            cmbTipo.Items.Add(TipoVacuna.Ninguna);
-            cmbTipo.Items.Add(TipoVacuna.Astra);
-            cmbTipo.Items.Add(TipoVacuna.Moderna);
-            cmbTipo.Items.Add(TipoVacuna.Pfizer);
-            cmbTipo.Items.Add(TipoVacuna.JandJ);
+        private void CargarTipoVacuna() => 
             cmbTipo.Items.AddRange(Enum.GetNames(typeof(TipoVacuna)));
-        }
+        
 
-        private void CargarPacientes()
+        private void CargarPacientesIngresados()
         {
             // Limpiamos la lista
             lboxIngresados.Items.Clear();
@@ -77,7 +71,7 @@ namespace Sanitaria.UI.WinForms
             // Ingreso
             _sistema.RealizarIngreso(paciente);
             // Refrescamos la pantalla
-            CargarPacientes();
+            CargarPacientesIngresados();
         }
         // ALTA
         private void btnAlta_Click(object sender, EventArgs e)
@@ -88,7 +82,7 @@ namespace Sanitaria.UI.WinForms
             // Alta
             _sistema.DarDeAlta(paciente);
             // Refrescamos
-            CargarPacientes();
+            CargarPacientesIngresados();
         }
 
         // VERIFICACION DE PRUEBA PCR

@@ -16,8 +16,10 @@ namespace Sanitaria.UI.WinForms
         [STAThread]
         static void Main()
         {
+            // Mis inyecciones
             var repositorio = new Sanitaria.Data.RepoPacienteCSV();
             var sistema = new GestorDeUrgencias(repositorio);
+            // 
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
