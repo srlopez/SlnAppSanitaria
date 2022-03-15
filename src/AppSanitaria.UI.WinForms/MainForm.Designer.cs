@@ -51,47 +51,48 @@ namespace Sanitaria.UI.WinForms
             this.chkSintomas = new System.Windows.Forms.CheckBox();
             this.lblPCRID = new System.Windows.Forms.Label();
             this.btnPCR = new System.Windows.Forms.Button();
+            this.lblNuevoIngreso = new System.Windows.Forms.Label();
             this.grpPCR.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBoxIngresados
+            // lboxIngresados
             // 
             this.lboxIngresados.FormattingEnabled = true;
             this.lboxIngresados.ItemHeight = 15;
-            this.lboxIngresados.Location = new System.Drawing.Point(28, 51);
-            this.lboxIngresados.Name = "listBoxIngresados";
-            this.lboxIngresados.Size = new System.Drawing.Size(299, 349);
+            this.lboxIngresados.Location = new System.Drawing.Point(330, 61);
+            this.lboxIngresados.Name = "lboxIngresados";
+            this.lboxIngresados.Size = new System.Drawing.Size(299, 169);
             this.lboxIngresados.TabIndex = 0;
-            this.lboxIngresados.SelectedValueChanged += new System.EventHandler(this.listBoxIngresados_SelectedValueChanged);
+            this.lboxIngresados.SelectedIndexChanged += new System.EventHandler(this.lboxIngresados_SelectedIndexChanged);
             // 
-            // Ingresados
+            // lblIngresados
             // 
             this.lblIngresados.AutoSize = true;
-            this.lblIngresados.Location = new System.Drawing.Point(28, 32);
-            this.lblIngresados.Name = "Ingresados";
+            this.lblIngresados.Location = new System.Drawing.Point(330, 32);
+            this.lblIngresados.Name = "lblIngresados";
             this.lblIngresados.Size = new System.Drawing.Size(64, 15);
             this.lblIngresados.TabIndex = 1;
             this.lblIngresados.Text = "Ingresados";
             // 
-            // ID
+            // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(386, 52);
-            this.lblID.Name = "ID";
+            this.lblID.Location = new System.Drawing.Point(26, 64);
+            this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(18, 15);
             this.lblID.TabIndex = 2;
             this.lblID.Text = "ID";
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(454, 49);
+            this.txtID.Location = new System.Drawing.Point(94, 61);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(200, 23);
             this.txtID.TabIndex = 3;
             // 
             // txtEdad
             // 
-            this.txtEdad.Location = new System.Drawing.Point(454, 78);
+            this.txtEdad.Location = new System.Drawing.Point(94, 90);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(200, 23);
             this.txtEdad.TabIndex = 5;
@@ -99,7 +100,7 @@ namespace Sanitaria.UI.WinForms
             // lblEdad
             // 
             this.lblEdad.AutoSize = true;
-            this.lblEdad.Location = new System.Drawing.Point(386, 81);
+            this.lblEdad.Location = new System.Drawing.Point(26, 93);
             this.lblEdad.Name = "lblEdad";
             this.lblEdad.Size = new System.Drawing.Size(33, 15);
             this.lblEdad.TabIndex = 4;
@@ -108,7 +109,7 @@ namespace Sanitaria.UI.WinForms
             // lblSexo
             // 
             this.lblSexo.AutoSize = true;
-            this.lblSexo.Location = new System.Drawing.Point(386, 110);
+            this.lblSexo.Location = new System.Drawing.Point(26, 122);
             this.lblSexo.Name = "lblSexo";
             this.lblSexo.Size = new System.Drawing.Size(32, 15);
             this.lblSexo.TabIndex = 6;
@@ -116,7 +117,7 @@ namespace Sanitaria.UI.WinForms
             // 
             // txtDosis
             // 
-            this.txtDosis.Location = new System.Drawing.Point(454, 165);
+            this.txtDosis.Location = new System.Drawing.Point(94, 177);
             this.txtDosis.Name = "txtDosis";
             this.txtDosis.Size = new System.Drawing.Size(200, 23);
             this.txtDosis.TabIndex = 11;
@@ -124,7 +125,7 @@ namespace Sanitaria.UI.WinForms
             // lblDosis
             // 
             this.lblDosis.AutoSize = true;
-            this.lblDosis.Location = new System.Drawing.Point(386, 168);
+            this.lblDosis.Location = new System.Drawing.Point(26, 180);
             this.lblDosis.Name = "lblDosis";
             this.lblDosis.Size = new System.Drawing.Size(35, 15);
             this.lblDosis.TabIndex = 10;
@@ -133,7 +134,7 @@ namespace Sanitaria.UI.WinForms
             // lblTVacuna
             // 
             this.lblTVacuna.AutoSize = true;
-            this.lblTVacuna.Location = new System.Drawing.Point(386, 139);
+            this.lblTVacuna.Location = new System.Drawing.Point(26, 151);
             this.lblTVacuna.Name = "lblTVacuna";
             this.lblTVacuna.Size = new System.Drawing.Size(54, 15);
             this.lblTVacuna.TabIndex = 8;
@@ -142,7 +143,7 @@ namespace Sanitaria.UI.WinForms
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(386, 199);
+            this.lblFecha.Location = new System.Drawing.Point(26, 211);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(38, 15);
             this.lblFecha.TabIndex = 12;
@@ -151,7 +152,7 @@ namespace Sanitaria.UI.WinForms
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(454, 136);
+            this.cmbTipo.Location = new System.Drawing.Point(94, 148);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(200, 23);
             this.cmbTipo.TabIndex = 14;
@@ -159,7 +160,7 @@ namespace Sanitaria.UI.WinForms
             // btnH
             // 
             this.btnH.AutoSize = true;
-            this.btnH.Location = new System.Drawing.Point(454, 108);
+            this.btnH.Location = new System.Drawing.Point(94, 120);
             this.btnH.Name = "btnH";
             this.btnH.Size = new System.Drawing.Size(34, 19);
             this.btnH.TabIndex = 15;
@@ -169,7 +170,7 @@ namespace Sanitaria.UI.WinForms
             // btnM
             // 
             this.btnM.AutoSize = true;
-            this.btnM.Location = new System.Drawing.Point(494, 108);
+            this.btnM.Location = new System.Drawing.Point(134, 120);
             this.btnM.Name = "btnM";
             this.btnM.Size = new System.Drawing.Size(36, 19);
             this.btnM.TabIndex = 16;
@@ -178,14 +179,14 @@ namespace Sanitaria.UI.WinForms
             // 
             // dataFUVacuna
             // 
-            this.dataFUVacuna.Location = new System.Drawing.Point(454, 193);
+            this.dataFUVacuna.Location = new System.Drawing.Point(94, 205);
             this.dataFUVacuna.Name = "dataFUVacuna";
             this.dataFUVacuna.Size = new System.Drawing.Size(200, 23);
             this.dataFUVacuna.TabIndex = 17;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(540, 222);
+            this.btnAdd.Location = new System.Drawing.Point(180, 234);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(114, 23);
             this.btnAdd.TabIndex = 18;
@@ -195,7 +196,7 @@ namespace Sanitaria.UI.WinForms
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(213, 408);
+            this.btnAlta.Location = new System.Drawing.Point(515, 236);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(114, 23);
             this.btnAlta.TabIndex = 19;
@@ -208,9 +209,9 @@ namespace Sanitaria.UI.WinForms
             this.grpPCR.Controls.Add(this.chkInmunodepresion);
             this.grpPCR.Controls.Add(this.chkSintomas);
             this.grpPCR.Controls.Add(this.lblPCRID);
-            this.grpPCR.Location = new System.Drawing.Point(386, 262);
+            this.grpPCR.Location = new System.Drawing.Point(651, 34);
             this.grpPCR.Name = "grpPCR";
-            this.grpPCR.Size = new System.Drawing.Size(268, 137);
+            this.grpPCR.Size = new System.Drawing.Size(303, 196);
             this.grpPCR.TabIndex = 20;
             this.grpPCR.TabStop = false;
             this.grpPCR.Text = "Prueba PCR";
@@ -218,7 +219,7 @@ namespace Sanitaria.UI.WinForms
             // chkInmunodepresion
             // 
             this.chkInmunodepresion.AutoSize = true;
-            this.chkInmunodepresion.Location = new System.Drawing.Point(69, 99);
+            this.chkInmunodepresion.Location = new System.Drawing.Point(16, 99);
             this.chkInmunodepresion.Name = "chkInmunodepresion";
             this.chkInmunodepresion.Size = new System.Drawing.Size(120, 19);
             this.chkInmunodepresion.TabIndex = 19;
@@ -228,7 +229,7 @@ namespace Sanitaria.UI.WinForms
             // chkSintomas
             // 
             this.chkSintomas.AutoSize = true;
-            this.chkSintomas.Location = new System.Drawing.Point(69, 74);
+            this.chkSintomas.Location = new System.Drawing.Point(16, 74);
             this.chkSintomas.Name = "chkSintomas";
             this.chkSintomas.Size = new System.Drawing.Size(75, 19);
             this.chkSintomas.TabIndex = 18;
@@ -238,28 +239,38 @@ namespace Sanitaria.UI.WinForms
             // lblPCRID
             // 
             this.lblPCRID.AutoSize = true;
-            this.lblPCRID.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPCRID.Location = new System.Drawing.Point(16, 32);
+            this.lblPCRID.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPCRID.Location = new System.Drawing.Point(16, 30);
             this.lblPCRID.Name = "lblPCRID";
-            this.lblPCRID.Size = new System.Drawing.Size(40, 25);
+            this.lblPCRID.Size = new System.Drawing.Size(33, 20);
             this.lblPCRID.TabIndex = 0;
             this.lblPCRID.Text = "n/a";
             // 
             // btnPCR
             // 
-            this.btnPCR.Location = new System.Drawing.Point(540, 408);
+            this.btnPCR.Location = new System.Drawing.Point(840, 236);
             this.btnPCR.Name = "btnPCR";
             this.btnPCR.Size = new System.Drawing.Size(114, 23);
             this.btnPCR.TabIndex = 21;
-            this.btnPCR.Text = "PCR";
+            this.btnPCR.Text = "Test PCR";
             this.btnPCR.UseVisualStyleBackColor = true;
             this.btnPCR.Click += new System.EventHandler(this.btnPCR_Click);
+            // 
+            // lblNuevoIngreso
+            // 
+            this.lblNuevoIngreso.AutoSize = true;
+            this.lblNuevoIngreso.Location = new System.Drawing.Point(26, 32);
+            this.lblNuevoIngreso.Name = "lblNuevoIngreso";
+            this.lblNuevoIngreso.Size = new System.Drawing.Size(84, 15);
+            this.lblNuevoIngreso.TabIndex = 22;
+            this.lblNuevoIngreso.Text = "Nuevo Ingreso";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.ClientSize = new System.Drawing.Size(972, 280);
+            this.Controls.Add(this.lblNuevoIngreso);
             this.Controls.Add(this.btnPCR);
             this.Controls.Add(this.grpPCR);
             this.Controls.Add(this.btnAlta);
@@ -280,7 +291,7 @@ namespace Sanitaria.UI.WinForms
             this.Controls.Add(this.lblIngresados);
             this.Controls.Add(this.lboxIngresados);
             this.Name = "MainForm";
-            this.Text = "Prueba PCR";
+            this.Text = "SERVICIO DE URGENCIAS";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.grpPCR.ResumeLayout(false);
             this.grpPCR.PerformLayout();
@@ -313,6 +324,7 @@ namespace Sanitaria.UI.WinForms
         private System.Windows.Forms.Button btnPCR;
         private System.Windows.Forms.CheckBox chkInmunodepresion;
         private System.Windows.Forms.CheckBox chkSintomas;
+        private System.Windows.Forms.Label lblNuevoIngreso;
     }
 }
 

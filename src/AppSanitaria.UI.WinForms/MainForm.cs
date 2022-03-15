@@ -43,6 +43,8 @@ namespace Sanitaria.UI.WinForms
             lboxIngresados.Items.Clear();
             var ingresados = _sistema.Ingresados;
             ingresados.ForEach(i => lboxIngresados.Items.Add(i));
+
+            if(ingresados.Count>0) lboxIngresados.SelectedIndex = 0;
         }
 
         // METODOS RELATIVOS A LOS CASOS DE USO
@@ -86,17 +88,20 @@ namespace Sanitaria.UI.WinForms
             
             // Realizamos la prueba
             var pcr = _sistema.RealizacionDePCR(sintomas, inmuno, paciente);
+
             // Mostramos el resultado
-            MessageBox.Show(pcr ? "SI PCR": "NO PCR"); ;
+            MessageBox.Show(pcr ? "SI": "NO", "Test PCR"); ;
         }
 
-        private void listBoxIngresados_SelectedValueChanged(object sender, EventArgs e)
+  
+
+        private void lboxIngresados_SelectedIndexChanged(object sender, EventArgs e)
         {
             var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
             if (paciente == null) return;
 
             // Mostramos el Paciente ingresado
-            lblPCRID.Text = paciente.PacienteID;
+            lblPCRID.Text = paciente.ToString();
         }
     }
 }
