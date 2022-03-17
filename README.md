@@ -31,7 +31,7 @@ De la sóla imagen se puede extraer el enunciado de la Aplicación Sanitaria que
     - Número de Dosis mínima x Tipo De Vacuna = { `2`, `2`, `2`, `1`}
 
 ## Fase1: La Aplicación   
-La aplicación, quedará centralizada en una clase (Lógica de Negocio) que contendrá como atributos la lista de pacients ingresados, y los metodos para la gestión de ingreso y alta del paciente, y el método que decide si se realiza la prueba, y lo que necesite.   
+Despleguar la arquitectura en dos partes, UI de consola y la aplicación, que quedará centralizada en una clase (Lógica de Negocio) que contendrá como atributos la lista de pacients ingresados, y los metodos para la gestión de ingreso y alta del paciente, y el método que decide si se realiza la prueba, y lo que necesite.   
 
 ## Fase2: Persistencia
 Leer el archivo sobre cómo añadir un repositorio u almacén de datos.  
@@ -40,6 +40,10 @@ Leer el archivo sobre cómo añadir un repositorio u almacén de datos.
 La idea es trabajar las buenas prácticas y la inyección de dependencias.  
 Profundizaremos en las colecciones y las funciones como parámetros.  
 [LEER](READMEFunciones.md)
+
+## Fase3: GUI
+Alternativa a la interfaza de consola, añadimos una interfaz gráfica del entorno Windows.
+
 
 
 
