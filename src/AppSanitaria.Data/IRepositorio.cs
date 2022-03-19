@@ -13,9 +13,11 @@ namespace Sanitaria.Data
     {
         public static string DataPath
         {
-            get => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-                    "../../../../../data/" :
-                    "../../data/";
+            // get => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+            //         "../../../../../data/" :
+            //         "../../data/";
+            get => typeof(IRepoPaciente).Assembly.Location.Split("src")[0]+"data/";
+                
         }
         void Guardar(List<InfoVacPaciente> ingresados);
         List<InfoVacPaciente> Leer();
