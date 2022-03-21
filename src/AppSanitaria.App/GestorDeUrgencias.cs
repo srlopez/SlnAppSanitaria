@@ -28,16 +28,16 @@ namespace Sanitaria
         }
 
         // Ejemplo de sobrecarga de métodos
-        public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, InfoVacPaciente paciente)
+        public bool RealizacionDePCR(bool sintomasC19, bool inmunodepresion, InfoVacPaciente paciente)
         {
             return RealizacionDePCR(
-                    sintomas,
+                    sintomasC19,
                     inmunodepresion,
                     VacunacionDelPaciente(paciente) == PautaVacunacion.Completa);
         }
-        public bool RealizacionDePCR(bool sintomas, bool inmunodepresion, bool pautaCompleta)
+        public bool RealizacionDePCR(bool sintomasC19, bool inmunodepresion, bool pautaCompleta)
         {
-            if (sintomas) return true;
+            if (sintomasC19) return true;
             if (inmunodepresion) return true;
             if (!pautaCompleta) return true;
             return false;

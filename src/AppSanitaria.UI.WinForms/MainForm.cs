@@ -16,19 +16,19 @@ namespace Sanitaria.UI.WinForms
     {
         private GestorDeUrgencias _sistema;
 
+        // INYECCION DE LA DEPENDENCIA
         public MainForm(GestorDeUrgencias sistema)
         {
             _sistema = sistema;
             InitializeComponent();
         }
 
-        // METODOS DE PREPARACION DE LA INTERFACE DE USUARIO
+        // METODOS DE PREPARACION Y MANEJO DE EVENTOS DE LA INTERFACE DE USUARIO
         private void MainForm_Load(object sender, EventArgs e)
         {
             CargarPacientesIngresados();
             CargarTipoVacuna();
         }
-
         private void lboxIngresados_SelectedIndexChanged(object sender, EventArgs e)
         {
             var paciente = (InfoVacPaciente)lboxIngresados.SelectedItem;
@@ -37,26 +37,13 @@ namespace Sanitaria.UI.WinForms
             // Mostramos el Paciente ingresado
             lblPCRID.Text = paciente.ToString();
         }
-        
-        private void CargarTipoVacuna() => 
-            cmbTipo.Items.AddRange(Enum.GetNames(typeof(TipoVacuna)));
-        
+        private void btnAdd_Click(object sender, EventArgs e) => IngresoDepaciente();
+        private void btnAlta_Click(object sender, EventArgs e) => AltaDePaciente();
+        private void btnPCR_Click(object sender, EventArgs e) => EfectuarPruebaPCR();
 
-        private void CargarPacientesIngresados()
-        {
-            // Limpiamos la lista
-            lboxIngresados.Items.Clear();
-            // La cargamos con nuestros datos
-            var ingresados = _sistema.Ingresados;
-            ingresados.ForEach(i => lboxIngresados.Items.Add(i));
-            // Marcamos el primero como seleccionado
-            if(ingresados.Count>0) lboxIngresados.SelectedIndex = 0;
-        }
-
-        
         // METODOS RELATIVOS A LOS CASOS DE USO
         // INGRESO
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void IngresoDepaciente()
         {
             // Nuevo Paciente
             var paciente = new InfoVacPaciente()
@@ -74,7 +61,7 @@ namespace Sanitaria.UI.WinForms
             CargarPacientesIngresados();
         }
         // ALTA
-        private void btnAlta_Click(object sender, EventArgs e)
+        private void AltaDePaciente()
         {
             // Seleccion del paciente
             var paciente = (InfoVacPaciente) lboxIngresados.SelectedItem;
@@ -84,9 +71,8 @@ namespace Sanitaria.UI.WinForms
             // Refrescamos
             CargarPacientesIngresados();
         }
-
         // VERIFICACION DE PRUEBA PCR
-        private void btnPCR_Click(object sender, EventArgs e)
+        private void EfectuarPruebaPCR()
         {
             // Obtenemos los datos para realizar la prueba
             var sintomas = chkSintomas.Checked;
@@ -100,6 +86,20 @@ namespace Sanitaria.UI.WinForms
             // Mostramos el resultado
             MessageBox.Show(testPCR ? "SI": "NO", "Test PCR"); ;
         }
+        // OBTENER/MOSTRAR PACIENTES INGRESADOS
+        private void CargarPacientesIngresados()
+        {
+            // Limpiamos la lista
+            lboxIngresados.Items.Clear();
+            // La cargamos con nuestros datos
+            var ingresados = _sistema.Ingresados;
+            ingresados.ForEach(i => lboxIngresados.Items.Add(i));
+            // Marcamos el primero como seleccionado
+            if (ingresados.Count > 0) lboxIngresados.SelectedIndex = 0;
+        }
+        // OTROS
+        private void CargarTipoVacuna() =>
+                cmbTipo.Items.AddRange(Enum.GetNames(typeof(TipoVacuna)));
 
     }
 }

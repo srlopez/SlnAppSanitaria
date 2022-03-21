@@ -223,7 +223,7 @@ namespace Sanitaria.UI.WinForms
             this.chkInmunodepresion.Name = "chkInmunodepresion";
             this.chkInmunodepresion.Size = new System.Drawing.Size(120, 19);
             this.chkInmunodepresion.TabIndex = 19;
-            this.chkInmunodepresion.Text = "Inmunodepresion";
+            this.chkInmunodepresion.Text = "Inmunodepresión";
             this.chkInmunodepresion.UseVisualStyleBackColor = true;
             // 
             // chkSintomas
@@ -231,9 +231,9 @@ namespace Sanitaria.UI.WinForms
             this.chkSintomas.AutoSize = true;
             this.chkSintomas.Location = new System.Drawing.Point(16, 74);
             this.chkSintomas.Name = "chkSintomas";
-            this.chkSintomas.Size = new System.Drawing.Size(75, 19);
+            this.chkSintomas.Size = new System.Drawing.Size(130, 19);
             this.chkSintomas.TabIndex = 18;
-            this.chkSintomas.Text = "Sintomas";
+            this.chkSintomas.Text = "Sintomas COVID-19";
             this.chkSintomas.UseVisualStyleBackColor = true;
             // 
             // lblPCRID
