@@ -45,20 +45,26 @@ namespace Sanitaria.UI.WinForms
         // INGRESO
         private void IngresoDepaciente()
         {
-            // Nuevo Paciente
-            var paciente = new InfoVacPaciente()
+            try
             {
-                PacienteID = txtID.Text,
-                Edad = Int32.Parse(txtEdad.Text),
-                Sexo = btnH.Checked ? 'H' : 'M',
-                TipoVacunacion = (TipoVacuna)Enum.Parse(typeof(TipoVacuna), cmbTipo.SelectedItem.ToString()),
-                DosisRecibidas = Int32.Parse(txtDosis.Text),
-                FechaUltimaDosis = dataFUVacuna.Value
-            };
-            // Ingreso
-            _sistema.RealizarIngreso(paciente);
-            // Refrescamos la pantalla
-            CargarPacientesIngresados();
+                // Nuevo Paciente
+                var paciente = new InfoVacPaciente()
+                {
+                    PacienteID = txtID.Text,
+                    Edad = Int32.Parse(txtEdad.Text),
+                    Sexo = btnH.Checked ? 'H' : 'M',
+                    TipoVacunacion = (TipoVacuna)Enum.Parse(typeof(TipoVacuna), cmbTipo.SelectedItem.ToString()),
+                    DosisRecibidas = Int32.Parse(txtDosis.Text),
+                    FechaUltimaDosis = dataFUVacuna.Value
+                };
+                // Ingreso
+                _sistema.RealizarIngreso(paciente);
+                // Refrescamos la pantalla
+                CargarPacientesIngresados();
+            }catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message, "ERROR"); ;
+            }
         }
         // ALTA
         private void AltaDePaciente()
