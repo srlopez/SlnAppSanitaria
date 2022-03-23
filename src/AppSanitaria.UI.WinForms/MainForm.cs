@@ -63,7 +63,7 @@ namespace Sanitaria.UI.WinForms
                 CargarPacientesIngresados();
             }catch (Exception ex)
             {
-                MessageBox.Show( ex.Message, "ERROR");
+                MessageBox.Show( ex.Message, "VAYA! ALGO VA MAL");
             }
         }
         // ALTA
